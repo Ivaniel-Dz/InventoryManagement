@@ -6,3 +6,154 @@ body {
     padding: 0;
     margin: 0;
 }
+
+/* Estructura principal */
+.layout {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar */
+.sidebar-container {
+    width: 250px; /* Ancho del sidebar */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid #e0e0e0;
+    background-color: white;
+}
+
+.logo-section {
+    padding: 24px;
+}
+
+.logo {
+    display: grid;
+    place-content: center;
+    height: 40px;
+    width: 100%;
+    background-color: #f3f4f6;
+    color: #6b7280;
+    font-size: 16px;
+    font-weight:bold;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.menu {
+    margin-top: 24px;
+    list-style: none;
+    padding-left: 0;
+}
+
+.menu-item {
+    display: block;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+    .menu-item:hover {
+        background-color: #f3f4f6;
+        color: #374151;
+    }
+
+    .menu-item.active {
+        background-color: #f3f4f6;
+        color: #374151;
+    }
+
+.user-section {
+    border-top: 1px solid #e0e0e0;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    text-decoration: none;
+    background-color: white;
+}
+
+    .user-profile:hover {
+        background-color: #f9fafb;
+    }
+
+.profile-picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-info {
+    margin-left: 8px;
+}
+
+.user-name {
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.user-email {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.box-content{
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.header {
+    background-color: #ffffff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        position: relative;
+    z-index: 10;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+/* Estilos para la barra de búsqueda */
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+/* Estilos para los íconos */
+.icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.icon {
+    display: flex;
+    text-decoration: none;
+    color: #1A202C;
+    transition: color 0.3s;
+    margin-left: 10px;
+}
+
+    .icon:hover {
+        color: #F6880D; /* Color en hover */
+    }
