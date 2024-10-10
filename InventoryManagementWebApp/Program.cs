@@ -1,4 +1,5 @@
 using InventoryManagementWebApp.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +15,12 @@ builder.Services.AddDbContext<AppDBContext>(options =>
 });
 
 // Autenticacion de Login Config
-// code..
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Acceso/Login";
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+    });
 
 var app = builder.Build();
 
@@ -28,7 +34,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 // Autenticación ejecución
-// code..
+app.UseAuthentication();
 
 app.UseAuthorization();
 

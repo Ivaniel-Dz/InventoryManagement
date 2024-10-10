@@ -3,6 +3,9 @@ using InventoryManagementWebApp.Data;
 using InventoryManagementWebApp.ViewModels;
 using InventoryManagementWebApp.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 /*
  * Controlador para Crear Usario y Acceso a Login
@@ -35,8 +38,8 @@ namespace InventoryManagementWebApp.Controllers
         {
             if (model.Password != model.ConfirPassword)
             {
-                ViewData["Mensaje"] = "Las Contraseña no coinciden"; // Muestra un mensaje de error
-                return View(); // Retorna la vista con el mensaje de error.
+                TempData["Mensaje"] = "Las Contraseña no coinciden"; // Muestra un mensaje de error
+                return RedirectToAction("Create"); // Retorna la vista con el mensaje de error.
             }
 
             // Crea un nuevo objeto de usuario basado en el modelo de vista recibido.
@@ -55,11 +58,11 @@ namespace InventoryManagementWebApp.Controllers
             if (usuario.Id != 0)
             {
                 //                      View, Controller
-                return RedirectToAction("Login", "Usuario");
+                return RedirectToAction("Login", "Acceso");
             }
 
-            ViewData["Mensaje"] = "No se creo el usuario"; // Muestra un mensaje de error
-            return View(); // Retorna la vista con el mensaje de error.
+            TempData["Mensaje"] = "No se creo el usuario"; // Muestra un mensaje de error
+            return RedirectToAction("Create"); // Retorna la vista con el mensaje de error.
         }
 
         // Muestra la Vista de Login
@@ -74,6 +77,54 @@ namespace InventoryManagementWebApp.Controllers
 
             // Retorna la vista de inicio de sesión.
             return View();
+        }
+
+        // Verifica el usuario al tratar de ingresar
+        [HttpPost]
+        public async Task<IActionResult> Login(Login model)
+        {
+            // Busca en la base de datos un usuario que coincida con el correo y la clave.
+            Usuario? userFound = await _appDbContext.Usuarios
+                .Where(user =>
+                    user.Correo == model.Correo &&
+                    user.Password == model.Password
+                ).FirstOrDefaultAsync();
+
+            // Condicion para el proceso de no encontro usuario
+            if (userFound == null)
+            {
+                TempData["Mensaje"] = "Contraseña o Correo Incorrecto.";
+                return RedirectToAction("Login"); // Retorna la vista con el mensaje de error.
+            }
+
+            // Crea una lista de reclamaciones (claims) que representan la identidad del usuario.
+            List<Claim> claims = new List<Claim>()
+            {
+                 // Agrega una reclamación que incluye el nombre completo del usuario.
+                new Claim(ClaimTypes.Name, userFound.Nombre)
+            };
+
+            // Crea una identidad basada en las reclamaciones usando autenticación de cookies.
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            // Define las propiedades de la autenticación.
+            AuthenticationProperties properties = new AuthenticationProperties() {
+                // Permite que la sesión pueda ser refrescada.
+                AllowRefresh = true, 
+            };
+
+            // Inicia la sesión del usuario de forma asíncrona.
+            await HttpContext.SignInAsync(
+                // Especifica el esquema de autenticación basado en cookies.
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                // Asigna la identidad de reclamaciones al usuario.
+                new ClaimsPrincipal(claimsIdentity),
+                // Aplica las propiedades de autenticación definidas.
+                properties
+            );
+
+            // Redirige al usuario a la página principal después de iniciar sesión.
+            return RedirectToAction("Index", "Home");
         }
     }
 }
