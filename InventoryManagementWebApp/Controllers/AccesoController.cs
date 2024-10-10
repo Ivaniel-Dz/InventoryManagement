@@ -108,8 +108,10 @@ namespace InventoryManagementWebApp.Controllers
             // Crea una lista de reclamaciones (claims) que representan la identidad del usuario.
             List<Claim> claims = new List<Claim>()
             {
-                 // Agrega una reclamación que incluye el nombre completo del usuario.
-                new Claim(ClaimTypes.Name, userFound.Nombre)
+                // Agrega una reclamacines que incluye:
+                new Claim(ClaimTypes.Name, userFound.Nombre), //Nombre
+                new Claim(ClaimTypes.Email, userFound.Correo), //Correo
+                new Claim(ClaimTypes.Role, userFound.Rol) // Rol
             };
 
             // Crea una identidad basada en las reclamaciones usando autenticación de cookies.
@@ -131,8 +133,25 @@ namespace InventoryManagementWebApp.Controllers
                 properties
             );
 
-            // Redirige al usuario a la página principal después de iniciar sesión.
-            return RedirectToAction("Index", "Home");
+
+            // Condicion para redirigir a la pagina principal segun su rol después de iniciar sesión.
+            if (userFound.Rol == "Empleado")
+            {
+                return RedirectToAction("Index", "Producto");
+            }
+            else if (userFound.Rol == "Admin")
+            {
+                return RedirectToAction("Index", "Usuario");
+            }
+
+            // Si no coincide ningún rol, redirigir a una página por defecto.
+            return RedirectToAction("Privacy", "Home");
         }
+
+        //Privacy
+
+        // Evita que se almacene en caché la respuesta de la acción Error.
+
+        // Acción que cierra la sesión del usuario.
     }
 }

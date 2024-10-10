@@ -1,5 +1,6 @@
 using InventoryManagementWebApp.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.CodeAnalysis.Options;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +21,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         options.LoginPath = "/Acceso/Login";
         options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+        options.AccessDeniedPath = "/Home/Privacy";
     });
 
 var app = builder.Build();
