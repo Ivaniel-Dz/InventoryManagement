@@ -38,7 +38,15 @@ namespace InventoryManagementWebApp.Controllers
         {
             if (model.Password != model.ConfirPassword)
             {
-                TempData["Mensaje"] = "Las Contraseña no coinciden"; // Muestra un mensaje de error
+                TempData["Mensaje"] = "Las Contraseña no coinciden."; // Muestra un mensaje de error
+                return RedirectToAction("Create"); // Retorna la vista con el mensaje de error.
+            }
+
+            // Verificación si el correo ya está registrado
+            var existingUser = await _appDbContext.Usuarios.FirstOrDefaultAsync(u => u.Correo == model.Correo);
+            if (existingUser != null)
+            {
+                TempData["Mensaje"] = "Ya existe un usuario con este correo."; // Muestra un mensaje de error
                 return RedirectToAction("Create"); // Retorna la vista con el mensaje de error.
             }
 
@@ -61,7 +69,7 @@ namespace InventoryManagementWebApp.Controllers
                 return RedirectToAction("Login", "Acceso");
             }
 
-            TempData["Mensaje"] = "No se creo el usuario"; // Muestra un mensaje de error
+            TempData["Mensaje"] = "No se creo el usuario."; // Muestra un mensaje de error
             return RedirectToAction("Create"); // Retorna la vista con el mensaje de error.
         }
 
@@ -85,9 +93,9 @@ namespace InventoryManagementWebApp.Controllers
         {
             // Busca en la base de datos un usuario que coincida con el correo y la clave.
             Usuario? userFound = await _appDbContext.Usuarios
-                .Where(user =>
-                    user.Correo == model.Correo &&
-                    user.Password == model.Password
+                .Where(u =>
+                    u.Correo == model.Correo &&
+                    u.Password == model.Password
                 ).FirstOrDefaultAsync();
 
             // Condicion para el proceso de no encontro usuario
