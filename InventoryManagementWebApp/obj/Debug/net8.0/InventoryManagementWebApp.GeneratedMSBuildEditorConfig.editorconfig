@@ -26,20 +26,12 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Ivaniel\Documents\Proyectos\InventoryManagementWebApp\InventoryManagementWebApp
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Ivaniel/Documents/Proyectos/InventoryManagementWebApp/InventoryManagementWebApp/Views/Acceso/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNvXENyZWF0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Ivaniel/Documents/Proyectos/InventoryManagementWebApp/InventoryManagementWebApp/Views/Acceso/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNvXExvZ2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ivaniel/Documents/Proyectos/InventoryManagementWebApp/InventoryManagementWebApp/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Ivaniel/Documents/Proyectos/InventoryManagementWebApp/InventoryManagementWebApp/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[C:/Users/Ivaniel/Documents/Proyectos/InventoryManagementWebApp/InventoryManagementWebApp/Views/Acceso/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNvXFByaXZhY3kuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ivaniel/Documents/Proyectos/InventoryManagementWebApp/InventoryManagementWebApp/Views/Producto/Index.cshtml]
@@ -52,6 +44,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Ivaniel/Documents/Proyectos/InventoryManagementWebApp/InventoryManagementWebApp/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ivaniel/Documents/Proyectos/InventoryManagementWebApp/InventoryManagementWebApp/Views/Usuario/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ivaniel/Documents/Proyectos/InventoryManagementWebApp/InventoryManagementWebApp/Views/Usuario/Index.cshtml]

@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using System.Diagnostics;
 
 /*
  * Controlador para Crear Usario y Acceso a Login
@@ -23,54 +25,6 @@ namespace InventoryManagementWebApp.Controllers
         {
             // Asigna el contexto recibido a la variable local
             _appDbContext = appDbContext;
-        }
-
-        // Muestra la vista para crear usuario
-        [HttpGet]
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // Crear Usuario Nuevo
-        [HttpPost]
-        public async Task<IActionResult> Create(User model)
-        {
-            if (model.Password != model.ConfirPassword)
-            {
-                TempData["Mensaje"] = "Las Contraseña no coinciden."; // Muestra un mensaje de error
-                return RedirectToAction("Create"); // Retorna la vista con el mensaje de error.
-            }
-
-            // Verificación si el correo ya está registrado
-            var existingUser = await _appDbContext.Usuarios.FirstOrDefaultAsync(u => u.Correo == model.Correo);
-            if (existingUser != null)
-            {
-                TempData["Mensaje"] = "Ya existe un usuario con este correo."; // Muestra un mensaje de error
-                return RedirectToAction("Create"); // Retorna la vista con el mensaje de error.
-            }
-
-            // Crea un nuevo objeto de usuario basado en el modelo de vista recibido.
-            Usuario usuario = new Usuario()
-            {
-                Nombre = model.Nombre,
-                Correo = model.Correo,
-                Password = model.Password,
-            };
-
-            //Agrega y Guarda nuevo usauario a la BBDD
-            await _appDbContext.Usuarios.AddAsync(usuario);
-            await _appDbContext.SaveChangesAsync();
-
-            // Verifica si el usuario fue creado correctamente.
-            if (usuario.Id != 0)
-            {
-                //                      View, Controller
-                return RedirectToAction("Login", "Acceso");
-            }
-
-            TempData["Mensaje"] = "No se creo el usuario."; // Muestra un mensaje de error
-            return RedirectToAction("Create"); // Retorna la vista con el mensaje de error.
         }
 
         // Muestra la Vista de Login
@@ -145,13 +99,29 @@ namespace InventoryManagementWebApp.Controllers
             }
 
             // Si no coincide ningún rol, redirigir a una página por defecto.
-            return RedirectToAction("Privacy", "Home");
+            return RedirectToAction("Privacy", "Acceso");
         }
 
         //Privacy
+        [AllowAnonymous]
+        public IActionResult Privacy()
+        {
+            return View();
+        }
 
         // Evita que se almacene en caché la respuesta de la acción Error.
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
 
         // Acción que cierra la sesión del usuario.
+        public async Task<IActionResult> Exit()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            //                      View    Controlador  
+            return RedirectToAction("Login", "Acceso");
+        }
     }
 }
