@@ -19,12 +19,16 @@
                     @if (User.IsInRole("Empleado"))
                     {
                         <li><a class="menu-item active" asp-controller="Producto" asp-action="Index">Producto</a></li>
+                        <li><a class="menu-item" asp-controller="Producto" asp-action="Create">Agregar Producto</a></li>
+                        <li><a class="menu-item" asp-controller="Movimiento" asp-action="Index">Ver Movimiento</a></li>
+                        <li><a class="menu-item" asp-controller="Categoria" asp-action="Create">Agregar Categoría</a></li>
+                        <li><a class="menu-item" >Ver Reportes</a></li>
                     }
                     @if (User.IsInRole("Admin"))
                     {
-                        <li><a class="menu-item" asp-controller="Usuario" asp-action="Index">Usuarios</a></li>
+                        <li><a class="menu-item active" asp-controller="Usuario" asp-action="Index">Usuarios</a></li>
+                        <li><a class="menu-item" asp-controller="Usuario" asp-action="Create">Nuevo Usuario</a></li>
                     }
-                    <li><a href="#" class="menu-item">Invoices</a></li>
                     
                 </ul>
             </div>

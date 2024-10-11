@@ -1,8 +1,15 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+root {
+    --color-body: #EDE8DC;
+    --bg-color: #303443;
+    --border-color: #141720;
+    --text-color-w: white;
+    --text-color-b: #4b5563;
+}
 
 body {
     font-family: "Poppins", sans-serif;
-    background-color: #EDE8DC;
+    background-color: var(--color-body);
     padding: 0;
     margin: 0;
 }
@@ -23,8 +30,8 @@ input, button {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-right: 1px solid #e0e0e0;
-    background-color: white;
+    border-right: 1px solid #141720;
+    background-color: #303443;
 }
 
 .logo-section {
@@ -36,10 +43,10 @@ input, button {
     place-content: center;
     height: 40px;
     width: 100%;
-    background-color: #f3f4f6;
-    color: #6b7280;
+    background-color: #303443;
+    color: #f3f4f6;
     font-size: 16px;
-    font-weight:bold;
+    font-weight: bold;
     border-radius: 8px;
     text-align: center;
 }
@@ -53,9 +60,10 @@ input, button {
 .menu-item {
     display: block;
     padding: 8px 16px;
+    margin-bottom: 12px;
     font-size: 14px;
     font-weight: 500;
-    color: #6b7280;
+    color: #f3f4f6;
     border-radius: 8px;
     text-decoration: none;
 }
@@ -71,7 +79,7 @@ input, button {
     }
 
 .user-section {
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid #141720;
 }
 
 .user-profile {
@@ -79,18 +87,15 @@ input, button {
     align-items: center;
     padding: 16px;
     text-decoration: none;
-    background-color: white;
+    background-color: #303443;
 }
-
-    .user-profile:hover {
-        background-color: #f9fafb;
-    }
 
 .profile-picture {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
+    background-color: white;
 }
 
 .user-info {
@@ -98,13 +103,14 @@ input, button {
 }
 
 .user-name {
+    color: white;
     font-weight: 600;
     font-size: 12px;
 }
 
 .user-email {
     font-size: 12px;
-    color: #6b7280;
+    color: #f3f4f6;
 }
 
 .box-content{
@@ -114,9 +120,9 @@ input, button {
 }
 
 .header {
-    background-color: #ffffff;
+    background-color: var(--color-body);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-        position: relative;
+    position: relative;
     z-index: 10;
 }
 
@@ -137,7 +143,7 @@ input, button {
 
 .search-input {
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     margin-right: 10px;
 }
@@ -153,11 +159,12 @@ input, button {
 .icon {
     display: flex;
     text-decoration: none;
-    color: #1A202C;
+    color: #141720;
     transition: color 0.3s;
     margin-left: 10px;
 }
 
     .icon:hover {
-        color: #F6880D; /* Color en hover */
+        transform: scale(1.1);
+        box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
     }

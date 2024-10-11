@@ -26,12 +26,28 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Ivaniel\Documents\Proyectos\InventoryManagementWebApp\InventoryManagementWebApp
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Ivaniel/Documents/Proyectos/InventoryManagementWebApp/InventoryManagementWebApp/Views/Acceso/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNvXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Ivaniel/Documents/Proyectos/InventoryManagementWebApp/InventoryManagementWebApp/Views/Acceso/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNvXExvZ2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ivaniel/Documents/Proyectos/InventoryManagementWebApp/InventoryManagementWebApp/Views/Acceso/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNvXFByaXZhY3kuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ivaniel/Documents/Proyectos/InventoryManagementWebApp/InventoryManagementWebApp/Views/Categoria/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ivaniel/Documents/Proyectos/InventoryManagementWebApp/InventoryManagementWebApp/Views/Movimiento/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aW1pZW50b1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ivaniel/Documents/Proyectos/InventoryManagementWebApp/InventoryManagementWebApp/Views/Producto/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ivaniel/Documents/Proyectos/InventoryManagementWebApp/InventoryManagementWebApp/Views/Producto/Index.cshtml]

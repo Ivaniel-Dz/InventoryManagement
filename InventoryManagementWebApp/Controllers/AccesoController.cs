@@ -31,11 +31,7 @@ namespace InventoryManagementWebApp.Controllers
         [HttpGet]
         public IActionResult Login() {
             // Si el usuario ya está autenticado, redirige a la página principal.
-            if (User.Identity!.IsAuthenticated)
-            {
-                //                      View, Controller
-                return RedirectToAction("Index", "Home");
-            }
+            if (User.Identity!.IsAuthenticated) return RedirectToAction("Privacy", "Acesso");
 
             // Retorna la vista de inicio de sesión.
             return View();
@@ -100,6 +96,54 @@ namespace InventoryManagementWebApp.Controllers
 
             // Si no coincide ningún rol, redirigir a una página por defecto.
             return RedirectToAction("Privacy", "Acceso");
+        }
+
+        // Muestra la vista para crear usuario
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        // Crear Usuario Nuevo
+        [HttpPost]
+        public async Task<IActionResult> Create(User model)
+        {
+            if (model.Password != model.ConfirPassword)
+            {
+                TempData["Mensaje"] = "Las Contraseña no coinciden."; // Muestra un mensaje de error
+                return RedirectToAction("Create"); // Retorna la vista con el mensaje de error.
+            }
+
+            // Verificación si el correo ya está registrado
+            var existingUser = await _appDbContext.Usuarios.FirstOrDefaultAsync(u => u.Correo == model.Correo);
+            if (existingUser != null)
+            {
+                TempData["Mensaje"] = "Ya existe un usuario con este correo."; // Muestra un mensaje de error
+                return RedirectToAction("Create"); // Retorna la vista con el mensaje de error.
+            }
+
+            // Crea un nuevo objeto de usuario basado en el modelo de vista recibido.
+            Usuario usuario = new Usuario()
+            {
+                Nombre = model.Nombre,
+                Correo = model.Correo,
+                Password = model.Password,
+            };
+
+            //Agrega y Guarda nuevo usauario a la BBDD
+            await _appDbContext.Usuarios.AddAsync(usuario);
+            await _appDbContext.SaveChangesAsync();
+
+            // Verifica si el usuario fue creado correctamente.
+            if (usuario.Id != 0)
+            {
+                //                      View, Controller
+                return RedirectToAction("Login", "Acceso");
+            }
+
+            TempData["Mensaje"] = "No se creo el usuario."; // Muestra un mensaje de error
+            return RedirectToAction("Create"); // Retorna la vista con el mensaje de error.
         }
 
         //Privacy

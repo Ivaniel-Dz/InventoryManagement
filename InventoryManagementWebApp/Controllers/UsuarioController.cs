@@ -3,7 +3,6 @@ using InventoryManagementWebApp.Data;
 using InventoryManagementWebApp.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
-using InventoryManagementWebApp.ViewModels;
 
 /*
  * Controlador para Mostrar, Editar y Elimar Usuarios (Acceso solo Admin)
@@ -11,6 +10,7 @@ using InventoryManagementWebApp.ViewModels;
 
 namespace InventoryManagementWebApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class UsuarioController : Controller
     {
         // Contexto de BBDD para interatuar con las tablas
@@ -24,7 +24,6 @@ namespace InventoryManagementWebApp.Controllers
         }
         
         //Vista de la lista de usuarios
-        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -41,44 +40,25 @@ namespace InventoryManagementWebApp.Controllers
 
         // Crear Usuario Nuevo
         [HttpPost]
-        public async Task<IActionResult> Create(User model)
+        public async Task<IActionResult> Create(Usuario usuario)
         {
-            if (model.Password != model.ConfirPassword)
-            {
-                TempData["Mensaje"] = "Las Contraseña no coinciden."; // Muestra un mensaje de error
-                return RedirectToAction("Create"); // Retorna la vista con el mensaje de error.
-            }
+            // Verifica si el correo ya está registrado
+            var existingUser = await _appDbContext.Usuarios.FirstOrDefaultAsync(u => u.Correo == usuario.Correo);
 
-            // Verificación si el correo ya está registrado
-            var existingUser = await _appDbContext.Usuarios.FirstOrDefaultAsync(u => u.Correo == model.Correo);
             if (existingUser != null)
             {
-                TempData["Mensaje"] = "Ya existe un usuario con este correo."; // Muestra un mensaje de error
-                return RedirectToAction("Create"); // Retorna la vista con el mensaje de error.
+                // Si el correo ya existe, mostrar mensaje de error
+                TempData["Mensaje"] = "Ya existe un usuario con este correo.";
+                return RedirectToAction("Create");
             }
 
-            // Crea un nuevo objeto de usuario basado en el modelo de vista recibido.
-            Usuario usuario = new Usuario()
-            {
-                Nombre = model.Nombre,
-                Correo = model.Correo,
-                Password = model.Password,
-            };
-
-            //Agrega y Guarda nuevo usauario a la BBDD
+            // Si el correo no existe, proceder con la creación del usuario
             await _appDbContext.Usuarios.AddAsync(usuario);
             await _appDbContext.SaveChangesAsync();
 
-            // Verifica si el usuario fue creado correctamente.
-            if (usuario.Id != 0)
-            {
-                //                      View, Controller
-                return RedirectToAction("Login", "Acceso");
-            }
-
-            TempData["Mensaje"] = "No se creo el usuario."; // Muestra un mensaje de error
-            return RedirectToAction("Create"); // Retorna la vista con el mensaje de error.
+            return RedirectToAction("Index", "Usuario");
         }
+
 
         // Redirige segun el Id a la vista de Editar
         [HttpGet]

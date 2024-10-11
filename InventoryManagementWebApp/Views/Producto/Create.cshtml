@@ -1,0 +1,63 @@
+﻿@model InventoryManagementWebApp.Models.Producto;
+
+<title>Agregar Producto</title>
+<link rel="stylesheet" href="~/css/form.css" />
+
+<section class="container">
+    <div class="grid-layout">
+        <main class="form-container" style="padding: 0px">
+            <div class="form-content">
+                <h1 class="form-title">Agregar Producto en Stock</h1>
+
+                <form class="form-grid" asp-controller="Producto" asp-action="Create" method="post">
+
+                    <div class="input-group full">
+                        <label for="FirstName" class="label">Producto</label>
+                        <input type="text" id="FirstName" class="input" asp-for="Nombre" required />
+                    </div>
+
+                    <div class="input-group">
+                        <label for="compra" class="label">Precio de Compra</label>
+                        <input type="number" id="compra" class="input" asp-for="PrecioCompra" required />
+                    </div>
+
+                    <div class="input-group">
+                        <label for="venta" class="label">Precio de Ventas</label>
+                        <input type="number" id="venta" class="input" asp-for="PrecioVenta" required />
+                    </div>
+
+                    <div class="input-group">
+                        <label for="stock" class="label">Cantidad en Stock</label>
+                        <input type="number" id="stock" class="input" asp-for="CantidadStock" required />
+                    </div>
+
+                    <div class="input-group">
+                        <label for="codigo" class="label">Codigo de Producto</label>
+                        <input type="text" id="codigo" class="input" asp-for="CodigoProducto" required />
+                    </div>
+
+                    <div class="input-group full">
+                        <label for="venta" class="label">Descripción</label>
+                        <textarea id="venta" class="input" style="height: 50px" asp-for="Descripcion"></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <a class="btn-link" asp-controller="Producto" asp-action="Index">Regresar</a>
+                    </div>
+
+                    <div class="input-group">
+                        <button class="btn-pr" type="submit">Confirmar</button>
+                    </div>
+
+                    @if (TempData["Mensaje"] != null)
+                    {
+                        <div class="alerta input-group full" role="alert">
+                            @TempData["Mensaje"]
+                        </div>
+                    }
+
+                </form>
+            </div>
+        </main>
+    </div>
+</section>

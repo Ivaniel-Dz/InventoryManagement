@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\InventoryManagementWebApp.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Ivaniel\\Documents\\Proyectos\\InventoryManagementWebApp\\InventoryManagementWebApp\\wwwroot\\css\\form.css",
+      "PackagePath": "staticwebassets\\css\\form.css"
+    },
+    {
       "Id": "C:\\Users\\Ivaniel\\Documents\\Proyectos\\InventoryManagementWebApp\\InventoryManagementWebApp\\wwwroot\\css\\login.css",
       "PackagePath": "staticwebassets\\css\\login.css"
     },
@@ -21,12 +25,8 @@
       "PackagePath": "staticwebassets\\css\\styles.css"
     },
     {
-      "Id": "C:\\Users\\Ivaniel\\Documents\\Proyectos\\InventoryManagementWebApp\\InventoryManagementWebApp\\wwwroot\\css\\user-form.css",
-      "PackagePath": "staticwebassets\\css\\user-form.css"
-    },
-    {
-      "Id": "C:\\Users\\Ivaniel\\Documents\\Proyectos\\InventoryManagementWebApp\\InventoryManagementWebApp\\wwwroot\\css\\user.css",
-      "PackagePath": "staticwebassets\\css\\user.css"
+      "Id": "C:\\Users\\Ivaniel\\Documents\\Proyectos\\InventoryManagementWebApp\\InventoryManagementWebApp\\wwwroot\\css\\table.css",
+      "PackagePath": "staticwebassets\\css\\table.css"
     },
     {
       "Id": "C:\\Users\\Ivaniel\\Documents\\Proyectos\\InventoryManagementWebApp\\InventoryManagementWebApp\\wwwroot\\favicon.ico",
