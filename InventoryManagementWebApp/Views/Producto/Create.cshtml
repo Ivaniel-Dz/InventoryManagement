@@ -1,4 +1,4 @@
-﻿@model InventoryManagementWebApp.Models.Producto;
+﻿@model InventoryManagementWebApp.ViewModels.ProductoViewModel;
 
 <title>Agregar Producto</title>
 <link rel="stylesheet" href="~/css/form.css" />
@@ -14,6 +14,17 @@
                     <div class="input-group full">
                         <label for="FirstName" class="label">Producto</label>
                         <input type="text" id="FirstName" class="input" asp-for="Nombre" required />
+                    </div>
+
+                    <div class="input-group full">
+                        <label for="FirstName" class="label">Categoria</label>
+                        <select class="input" asp-for="CategoriaId">
+                            <option value=""> Seleccione una Categoría </option>
+                            @foreach (var item in Model.Categorias)
+                            {
+                                <option value="@item.Id">@item.NombreCategoria</option>
+                            }
+                        </select>
                     </div>
 
                     <div class="input-group">
