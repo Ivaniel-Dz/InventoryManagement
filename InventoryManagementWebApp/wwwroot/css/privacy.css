@@ -1,0 +1,27 @@
+﻿/* Contenedor principal */
+.section-container {
+    max-width: 32rem; /* Aproximadamente 512px (lg en Tailwind) */
+    padding: 10rem 1rem; /* 20rem de py (80px) y 4 de px (16px) */
+    margin: 0 auto;
+    text-align: center;
+    gap: 0.25rem; /* Espaciado entre elementos */
+}
+
+/* Imagen */
+.section-image {
+    margin: 0 auto;
+    width: 25%; /* Aproximadamente sm:w-1/4 */
+}
+
+/* Título */
+.section-title {
+    font-size: 1.125rem; /* text-lg (18px) */
+    font-weight: 500; /* font-medium */
+    color: #1f2937; /* text-gray-800 */
+}
+
+/* Descripción */
+.section-description {
+    color: #4b5563; /* text-gray-600 */
+    margin-top: 0.25rem; /* Similar a space-y-1 */
+}

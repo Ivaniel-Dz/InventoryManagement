@@ -22,7 +22,7 @@
                     }
                     @if (User.IsInRole("Admin"))
                     {
-                        <li><a class="menu-item" asp-controller="Usuario" asp-action="Index">Empleados</a></li>
+                        <li><a class="menu-item" asp-controller="Usuario" asp-action="Index">Usuarios</a></li>
                     }
                     <li><a href="#" class="menu-item">Invoices</a></li>
                     
@@ -31,7 +31,7 @@
 
             <div class="user-section">
                 <a href="#" class="user-profile">
-                    <img src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                    <img src="https://robohash.org/user-profile"
                          alt="User"
                          class="profile-picture" />
                     <div>
@@ -54,7 +54,7 @@
                         <input type="text" placeholder="Search..." class="search-input">
                     </div>
                     <div class="icon-container">
-                        <a href="#" class="icon alert-icon">
+                        <a class="icon alert-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bell-filled" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M14.235 19c.865 0 1.322 1.024 .745 1.668a3.992 3.992 0 0 1 -2.98 1.332a3.992 3.992 0 0 1 -2.98 -1.332c-.552 -.616 -.158 -1.579 .634 -1.661l.11 -.006h4.471z" stroke-width="0" fill="currentColor" />

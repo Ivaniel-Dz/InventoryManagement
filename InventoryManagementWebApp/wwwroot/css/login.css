@@ -8,6 +8,10 @@ body {
     background-color: #f9fafb;
 }
 
+input, button {
+    font-family: "Poppins", sans-serif !important;
+}
+
 .section {
     background-color: #f9fafb;
     padding-top: 60px;

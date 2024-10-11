@@ -26,9 +26,10 @@ namespace InventoryManagementWebApp.Controllers
         //Vista de la lista de usuarios
         [Authorize(Roles = "Admin")]
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            List<Usuario> lista = await _appDbContext.Usuarios.ToListAsync();
+            return View(lista);
         }
 
         // Muestra la vista para crear usuario
@@ -79,9 +80,43 @@ namespace InventoryManagementWebApp.Controllers
             return RedirectToAction("Create"); // Retorna la vista con el mensaje de error.
         }
 
-        // Editar Usuario
+        // Redirige segun el Id a la vista de Editar
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            Usuario usuario = await _appDbContext.Usuarios.FirstAsync(u => u.Id == id);
+            return View(usuario);
+        }
 
-        // Elminiar Usuario
+        // Edita el usuario segun el Id
+        [HttpPost]
+        public async Task<IActionResult> Edit(Usuario usuario)
+        {
+            var existingUser = await _appDbContext.Usuarios.FindAsync(usuario.Id);
+            if (existingUser == null)
+            {
+                TempData["Mensaje"] = "El usuario no fue encontrado.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            // Actualiza las propiedades si el nuevo valor no es null o vacío
+            existingUser.Nombre = string.IsNullOrWhiteSpace(usuario.Nombre) ? existingUser.Nombre : usuario.Nombre;
+            existingUser.Correo = string.IsNullOrWhiteSpace(usuario.Correo) ? existingUser.Correo : usuario.Correo;
+            existingUser.Password = string.IsNullOrWhiteSpace(usuario.Password) ? existingUser.Password : usuario.Password;
+
+            await _appDbContext.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        //Eliminar
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            Usuario usuario = await _appDbContext.Usuarios.FirstAsync(u => u.Id == id);
+            _appDbContext.Usuarios.Remove(usuario);
+            await _appDbContext.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
 
     }
 }

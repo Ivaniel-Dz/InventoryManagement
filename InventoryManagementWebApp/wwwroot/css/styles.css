@@ -7,6 +7,10 @@ body {
     margin: 0;
 }
 
+input, button {
+    font-family: "Poppins", sans-serif !important;
+}
+
 /* Estructura principal */
 .layout {
     display: flex;

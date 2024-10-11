@@ -1,0 +1,47 @@
+﻿/* Estilos generales para la tabla */
+.table-container {
+    overflow-x: auto;
+}
+
+.table {
+    min-width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    text-align: left;
+    font-size: 14px;
+}
+
+thead th {
+    padding: 8px 16px;
+    font-weight: 600;
+    color: #1a202c;
+    background-color: #f9fafb;
+}
+
+tbody td {
+    padding: 8px 16px;
+    color: #4b5563;
+    border-top: 1px solid #e5e7eb;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+
+tbody td a.icon-btn {
+    display: inline-block;
+    width: 24px;
+}
+
+tbody td a.btn-edit {
+    color: #3393ff;
+}
+
+tbody td a.btn-delete {
+    color: #ff3333;
+}
+
+tbody td a.icon-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+}

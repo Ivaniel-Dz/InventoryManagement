@@ -1,0 +1,42 @@
+﻿
+@model InventoryManagementWebApp.Models.Usuario;
+
+<title>Registro Nuevo</title>
+<link rel="stylesheet" href="~/css/user-form.css" />
+
+<section class="container">
+    <div class="grid-layout">
+        <main class="form-container">
+            <div class="form-content">
+                <h1 class="form-title">Actualizar Usuario</h1>
+
+                <form class="form-grid" asp-controller="Usuario" asp-action="Edit" method="post">
+                    <input asp-for="Id" type="hidden" />
+                    <div class="input-group full">
+                        <label for="FirstName" class="label">Nombre Completo</label>
+                        <input type="text" id="FirstName" class="input" asp-for="Nombre" required />
+                    </div>
+
+                    <div class="input-group full">
+                        <label for="Email" class="label">Correo</label>
+                        <input type="email" id="Email" class="input" asp-for="Correo" required />
+                    </div>
+
+                    <div class="input-group full">
+                        <label for="Password" class="label">Contraseña</label>
+                        <input type="password" id="Password" class="input" asp-for="Password" />
+                    </div>
+
+                    <div class="input-group">
+                        <a class="btn-link" asp-controller="Usuario" asp-action="Index">Regresar</a>
+                    </div>
+
+                    <div class="input-group">
+                        <button class="btn-pr" type="submit">Actualizar</button>
+                    </div>
+
+                </form>
+            </div>
+        </main>
+    </div>
+</section>
