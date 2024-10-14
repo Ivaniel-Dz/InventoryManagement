@@ -2,6 +2,7 @@
 using InventoryManagementWebApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManagementWebApp.Controllers
@@ -9,6 +10,7 @@ namespace InventoryManagementWebApp.Controllers
     [Authorize(Roles = "Empleado")]
     public class MovimientoController : Controller
     {
+
         private readonly AppDBContext _appDbContext;
         public MovimientoController(AppDBContext appDBContext)
         {
@@ -23,7 +25,40 @@ namespace InventoryManagementWebApp.Controllers
             return View(lista);
         }
 
-        // Crear
+        // Vista para Crear
+        [HttpGet]
+        public IActionResult Create() 
+        {
+            ViewBag.Productos = new SelectList(_appDbContext.Productos, "Id", "Nombre");
+            return View();
+        }
+
+        // Agregar Movimiento
+        [HttpPost]
+        public async Task<IActionResult> Create(MovimientoInventario model)
+        {
+            if (ModelState.IsValid) { 
+                _appDbContext.MovimientoInventarios.Add(model);
+
+                var producto = await _appDbContext.Productos.FindAsync(model.ProductoId);
+
+                if (model.TipoMovimiento == "Entrada")
+                {
+                    producto.CantidadStock += model.Cantidad;
+                }
+                else if(model.TipoMovimiento == "Salida")
+                {
+                    producto.CantidadStock -= model.Cantidad;
+                }
+
+                await _appDbContext.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+
+            // Vuelve a cargar la lista de productos si el modelo no es válido
+            ViewBag.Productos = new SelectList(_appDbContext.Productos, "Id", "Nombre", model.ProductoId);
+            return View(model);
+        }
 
         // Editar
 

@@ -13,16 +13,28 @@
 ## Comandos Usados en el proyecto
 1. Realiza las migraciones de las propiedades configuradas
 ```bash
-add-migration "mensaje"
+Add-Migration "Mensaje"
 ```
 
 2. Actualiza/agrega la migración a la base de datos
 ```bash
-update-database
+Update-Database
 ```
+3. Quita/Elimina la migración a la base de datos
+```bash
+Remove-Database
+```
+
 
 # Documentación
 
 
 ```var``` vs ```declaración explícita```: Usa var cuando el tipo es obvio o el código es más limpio, y usa la declaración explícita cuando quieres más claridad o cuando el tipo no es evidente.
 ```FirstAsync``` vs ```FirstOrDefaultAsync```: Usa ```FirstAsync``` cuando esperas que siempre haya un resultado y quieres que se lance una excepción si no lo hay; usa ```FirstOrDefaultAsync``` cuando el resultado puede no existir y quieres manejar el caso de que el resultado sea null.
+
+Diferencias clave:
+IsNullOrEmpty: Solo comprueba si la cadena es nula o vacía, sin tener en cuenta si contiene espacios u otros caracteres en blanco.
+IsNullOrWhiteSpace: Además de verificar si es nula o vacía, también considera cadenas que solo contienen espacios en blanco como vacías.
+¿Cuándo usar cada uno?
+IsNullOrEmpty: Úsalo si quieres aceptar cadenas que pueden tener espacios u otros caracteres en blanco como válidas.
+IsNullOrWhiteSpace: Úsalo si quieres tratar cadenas que solo contienen espacios en blanco como si estuvieran vacías, lo cual es útil en muchas validaciones de entrada.
