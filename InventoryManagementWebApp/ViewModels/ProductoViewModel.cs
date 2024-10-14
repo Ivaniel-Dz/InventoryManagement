@@ -15,11 +15,11 @@ namespace InventoryManagementWebApp.ViewModels
 
         public string CodigoProducto { get; set; }
 
-        public string Descripcion { get; set; }
+        public string? Descripcion { get; set; }
 
         public int CategoriaId { get; set; } // ID de la categoría seleccionada
 
         // Lista de categorías para el dropdown
-        public List<Categoria> Categorias { get; set; }
+        public List<Categoria> Categorias { get; set; } = new List<Categoria>();
     }
 }

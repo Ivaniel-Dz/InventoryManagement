@@ -17,7 +17,7 @@
                     </div>
 
                     <div class="input-group full">
-                        <label for="FirstName" class="label">Categoria</label>
+                        <label for="CategoriaId" class="label">Categoria</label>
                         <select class="input" asp-for="CategoriaId">
                             <option value=""> Seleccione una Categoría </option>
                             @foreach (var item in Model.Categorias)
@@ -64,6 +64,13 @@
                     {
                         <div class="alerta input-group full" role="alert">
                             @TempData["Mensaje"]
+                        </div>
+                    }
+
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="validation-summary-errors">
+                            @Html.ValidationSummary()
                         </div>
                     }
 

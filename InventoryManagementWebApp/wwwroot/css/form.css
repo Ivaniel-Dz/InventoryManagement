@@ -4,7 +4,7 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
-input, button {
+input, button, textarea, option, select {
     font-family: "Poppins", sans-serif !important;
 }
 

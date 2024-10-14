@@ -50,4 +50,12 @@
             }
         </tbody>
     </table>
+
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alerta input-group full" role="alert">
+            @TempData["Mensaje"]
+        </div>
+    }
+
 </div>

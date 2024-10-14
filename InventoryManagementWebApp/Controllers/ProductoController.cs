@@ -32,39 +32,39 @@ namespace InventoryManagementWebApp.Controllers
             var categorias = await _appDbContext.Categorias.ToListAsync();
 
             // Crear un nuevo producto con las categorías cargadas
-            var viewModel = new ProductoViewModel
+            var model = new ProductoViewModel
             {
                 Categorias = categorias // Pasar las categorías al ViewModel
             };
 
-            return View(viewModel);
+            return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ProductoViewModel viewModel)
+        public async Task<IActionResult> Create(ProductoViewModel model)
         {
             // Verificar si ya existe un producto con el mismo código
             var existingProduct = await _appDbContext.Productos
-                .FirstOrDefaultAsync(p => p.CodigoProducto == viewModel.CodigoProducto);
+                .FirstOrDefaultAsync(p => p.CodigoProducto == model.CodigoProducto);
 
             if (existingProduct != null)
             {
                 TempData["Mensaje"] = "Ya existe un Producto Igual.";
                 // Si ya existe el producto, recargar las categorías y volver a mostrar el formulario
-                viewModel.Categorias = await _appDbContext.Categorias.ToListAsync();
-                return View(viewModel);
+                model.Categorias = await _appDbContext.Categorias.ToListAsync();
+                return View(model);
             }
 
             // Crear un nuevo producto a partir del ViewModel
             var producto = new Producto
             {
-                Nombre = viewModel.Nombre,
-                PrecioCompra = viewModel.PrecioCompra,
-                PrecioVenta = viewModel.PrecioVenta,
-                CantidadStock = viewModel.CantidadStock,
-                CodigoProducto = viewModel.CodigoProducto,
-                Descripcion = viewModel.Descripcion,
-                CategoriaId = viewModel.CategoriaId // Guardar el ID de la categoría seleccionada
+                Nombre = model.Nombre,
+                PrecioCompra = model.PrecioCompra,
+                PrecioVenta = model.PrecioVenta,
+                CantidadStock = model.CantidadStock,
+                CodigoProducto = model.CodigoProducto,
+                Descripcion = model.Descripcion,
+                CategoriaId = model.CategoriaId // Guardar el ID de la categoría seleccionada
             };
 
             await _appDbContext.Productos.AddAsync(producto);
@@ -83,6 +83,9 @@ namespace InventoryManagementWebApp.Controllers
 
             if (producto == null) { return NotFound(); }
 
+            // Cargar categorías
+            var categorias = await _appDbContext.Categorias.ToListAsync();
+
             // Crea un ViewModel con los datos del producto y lista de categorias
             var model = new ProductoViewModel()
             {
@@ -91,9 +94,10 @@ namespace InventoryManagementWebApp.Controllers
                 PrecioCompra = producto.PrecioCompra,
                 PrecioVenta = producto.PrecioVenta,
                 CantidadStock = producto.CantidadStock,
+                CodigoProducto = producto.CodigoProducto,
                 Descripcion = producto.Descripcion,
                 CategoriaId = producto.CategoriaId,
-                Categorias = await _appDbContext.Categorias.ToListAsync() // carga la lista de categoria
+                Categorias = categorias
             };
 
             return View(model);
@@ -113,20 +117,27 @@ namespace InventoryManagementWebApp.Controllers
             // Busca el produco en la base de datos
             var producto = await _appDbContext.Productos.FirstOrDefaultAsync(p => p.Id == model.Id);
 
-            if (producto == null) { return NotFound(); }
+            // Verifica si el producto existe
+            // Verifica si el producto existe
+            if (producto == null)
+            {
+                TempData["Mensaje"] = "Producto no encontrado.";
+                return NotFound();
+            }
 
-            // Actualiza los campos del Producto
-            producto.Nombre = model.Nombre;
-            producto.PrecioCompra = model.PrecioCompra;
-            producto.PrecioVenta = model.PrecioVenta;
-            producto.CantidadStock = model.CantidadStock;
-            producto.CodigoProducto = model.CodigoProducto;
-            producto.Descripcion = model.Descripcion;
-            producto.CategoriaId = model.CategoriaId;
+            // Actualiza solo si el valor es no nulo o no vacío.
+            producto.Nombre = !string.IsNullOrEmpty(model.Nombre) ?  model.Nombre : producto.Nombre;
+            producto.PrecioCompra = model.PrecioCompra != 0 ? model.PrecioCompra : producto.PrecioCompra;
+            producto.PrecioVenta = model.PrecioVenta != 0 ? model.PrecioVenta: producto.PrecioVenta;
+            producto.CantidadStock = model.CantidadStock != 0 ? model.CantidadStock : producto.CantidadStock;
+            producto.CodigoProducto = !string.IsNullOrEmpty(model.CodigoProducto) ? model.CodigoProducto : producto.CodigoProducto;
+            producto.Descripcion = !string.IsNullOrEmpty(model.Descripcion) ? model.Descripcion : producto.Descripcion;
+            producto.CategoriaId = model.CategoriaId != 0 ? model.CategoriaId : producto.CategoriaId;
 
             // Guarda los cambios en la BBDD
-            _appDbContext.Productos.Update(producto);
             await _appDbContext.SaveChangesAsync();
+
+            TempData["Mensaje"] = "Producto actualizado correctamente.";
             //                      View     Controller
             return RedirectToAction("Index", "Producto"); // Redirige a view de productos despues de guardar
         }
