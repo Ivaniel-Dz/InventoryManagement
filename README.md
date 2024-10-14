@@ -20,3 +20,9 @@ add-migration "mensaje"
 ```bash
 update-database
 ```
+
+# Documentación
+
+
+```var``` vs ```declaración explícita```: Usa var cuando el tipo es obvio o el código es más limpio, y usa la declaración explícita cuando quieres más claridad o cuando el tipo no es evidente.
+```FirstAsync``` vs ```FirstOrDefaultAsync```: Usa ```FirstAsync``` cuando esperas que siempre haya un resultado y quieres que se lance una excepción si no lo hay; usa ```FirstOrDefaultAsync``` cuando el resultado puede no existir y quieres manejar el caso de que el resultado sea null.
