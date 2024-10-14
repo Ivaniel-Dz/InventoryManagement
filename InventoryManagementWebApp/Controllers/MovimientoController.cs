@@ -1,5 +1,6 @@
 ﻿using InventoryManagementWebApp.Data;
 using InventoryManagementWebApp.Models;
+using InventoryManagementWebApp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -35,28 +36,47 @@ namespace InventoryManagementWebApp.Controllers
 
         // Agregar Movimiento
         [HttpPost]
-        public async Task<IActionResult> Create(MovimientoInventario model)
+        public async Task<IActionResult> Create(Inventario model)
         {
-            if (ModelState.IsValid) { 
-                _appDbContext.MovimientoInventarios.Add(model);
+            if (ModelState.IsValid)
+            {
+                // Busca el producto seleccionado
+                var producto = await _appDbContext.Productos
+                    .FirstOrDefaultAsync(p => p.Id == model.ProductoId);
 
-                var producto = await _appDbContext.Productos.FindAsync(model.ProductoId);
+                if (producto == null)
+                {
+                    ModelState.AddModelError("", "Producto no encontrado.");
+                    model.Productos = await _appDbContext.Productos.ToListAsync();
+                    return View(model);
+                }
 
-                if (model.TipoMovimiento == "Entrada")
+                // Actualiza la cantidad en Stock segun el tipo de movimiento
+                if(model.TipoMovimiento == "Entrada")
                 {
                     producto.CantidadStock += model.Cantidad;
-                }
-                else if(model.TipoMovimiento == "Salida")
-                {
+                } else if (model.TipoMovimiento == "Salida") {
                     producto.CantidadStock -= model.Cantidad;
                 }
 
+                // Crea el movimiento de Inventario
+                var movimientoInventario = new MovimientoInventario
+                {
+                    ProductoId = model.ProductoId,
+                    TipoMovimiento = model.TipoMovimiento,
+                    Fecha = model.Fecha,
+                    Cantidad = model.Cantidad,
+                    Descripcion = model.Descripcion,
+                };
+
+                // Guardar en la base de datos
+                _appDbContext.MovimientoInventarios.Add( movimientoInventario );
                 await _appDbContext.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
 
-            // Vuelve a cargar la lista de productos si el modelo no es válido
-            ViewBag.Productos = new SelectList(_appDbContext.Productos, "Id", "Nombre", model.ProductoId);
+            model.Productos = await _appDbContext.Productos.ToListAsync();
             return View(model);
         }
 
