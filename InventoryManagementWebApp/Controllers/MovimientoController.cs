@@ -129,6 +129,24 @@ namespace InventoryManagementWebApp.Controllers
                     return NotFound();
                 }
 
+                // Obtener el producto relacionado con el movimiento
+                var producto = await _appDbContext.Productos.FirstOrDefaultAsync(p => p.Id == movimiento.ProductoId);
+                if (producto == null)
+                {
+                    TempData["Mensaje"] = "Producto no encontrado.";
+                    return NotFound();
+                }
+
+                // Revertir la cantidad de stock del producto según el movimiento original
+                if (movimiento.TipoMovimiento == "Entrada")
+                {
+                    producto.CantidadStock -= movimiento.Cantidad;
+                }
+                else if (movimiento.TipoMovimiento == "Salida")
+                {
+                    producto.CantidadStock += movimiento.Cantidad;
+                }
+
                 // Actualiza solo si el valor es no nulo o no vacío
                 movimiento.ProductoId = model.ProductoId != 0 ? model.ProductoId : movimiento.ProductoId;
                 movimiento.TipoMovimiento = !string.IsNullOrEmpty(model.TipoMovimiento) ? model.TipoMovimiento : movimiento.TipoMovimiento;
@@ -136,20 +154,22 @@ namespace InventoryManagementWebApp.Controllers
                 movimiento.Cantidad = model.Cantidad != 0 ? model.Cantidad : movimiento.Cantidad;
                 movimiento.Descripcion = !string.IsNullOrEmpty(model.Descripcion) ? model.Descripcion : movimiento.Descripcion;
 
-                // Actualizar la cantidad en stock del producto si ha cambiado la cantidad
-                var producto = await _appDbContext.Productos.FirstOrDefaultAsync(p => p.Id == model.ProductoId);
-                if(producto == null)
+                // Volver a obtener el producto en caso de que se haya cambiado el ProductoId
+                producto = await _appDbContext.Productos.FirstOrDefaultAsync(p => p.Id == movimiento.ProductoId);
+                if (producto == null)
                 {
                     TempData["Mensaje"] = "Producto no encontrado.";
                     return NotFound();
                 }
 
-                if (model.TipoMovimiento == "Entrada")
+                // Actualizar la cantidad de stock según el nuevo movimiento
+                if (movimiento.TipoMovimiento == "Entrada")
                 {
-                    producto.CantidadStock += model.Cantidad - movimiento.Cantidad;
-                }else if (model.TipoMovimiento == "Salida")
+                    producto.CantidadStock += movimiento.Cantidad;
+                }
+                else if (movimiento.TipoMovimiento == "Salida")
                 {
-                    producto.CantidadStock -= model.Cantidad - movimiento.Cantidad;
+                    producto.CantidadStock -= movimiento.Cantidad;
                 }
 
                 // Guarda los cambios en la BBDD

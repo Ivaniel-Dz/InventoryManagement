@@ -41,3 +41,4 @@ IsNullOrWhiteSpace: Úsalo si quieres tratar cadenas que solo contienen espacios
 
 ## Puntos a Mejorar
 1. Mejorar el diseño de las Alertas del CRUD, con js o usando algún librería
+2. Agregar Edit, Delete para Categoria
