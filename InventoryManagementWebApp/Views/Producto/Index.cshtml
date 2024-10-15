@@ -58,4 +58,11 @@
         </div>
     }
 
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alerta input-group full validation-summary-errors">
+            @Html.ValidationSummary()
+        </div>
+    }
+
 </div>

@@ -118,7 +118,6 @@ namespace InventoryManagementWebApp.Controllers
             var producto = await _appDbContext.Productos.FirstOrDefaultAsync(p => p.Id == model.Id);
 
             // Verifica si el producto existe
-            // Verifica si el producto existe
             if (producto == null)
             {
                 TempData["Mensaje"] = "Producto no encontrado.";

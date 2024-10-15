@@ -9,12 +9,18 @@
             <div class="form-content">
                 <h1 class="form-title">Registrar una entrada o salida de Producto</h1>
 
-                <form class="form-grid" asp-controller="Movimiento" asp-action="Create" method="post">
-
+                <form class="form-grid" asp-controller="Movimiento" asp-action="Edit" method="post">
+                    <input type="hidden" asp-for="Id" />
                     <div class="input-group full">
                         <label for="ProductoId" class="label">Producto</label>
-                        <select class="input" asp-for="ProductoId" asp-items="ViewBag.Productos">
+                        <select class="input" asp-for="ProductoId">
                             <option value="">Seleccion el Producto</option>
+
+                            @foreach(var item in Model.Productos)
+                            {
+                                <option value="@item.Id"> @item.Nombre </option>
+                            }
+
                         </select>
                     </div>
 
@@ -58,7 +64,7 @@
 
                     @if (!ViewData.ModelState.IsValid)
                     {
-                        <div class="alerta input-group full validation-summary-errors">
+                        <div class="alerta input-group full">
                             @Html.ValidationSummary()
                         </div>
                     }

@@ -46,4 +46,19 @@
             }
         </tbody>
     </table>
+
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alerta input-group full" role="alert">
+            @TempData["Mensaje"]
+        </div>
+    }
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alerta input-group full validation-summary-errors">
+            @Html.ValidationSummary()
+        </div>
+    }
+
 </div>

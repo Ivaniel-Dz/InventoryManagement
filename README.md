@@ -38,3 +38,6 @@ IsNullOrWhiteSpace: Además de verificar si es nula o vacía, también considera
 ¿Cuándo usar cada uno?
 IsNullOrEmpty: Úsalo si quieres aceptar cadenas que pueden tener espacios u otros caracteres en blanco como válidas.
 IsNullOrWhiteSpace: Úsalo si quieres tratar cadenas que solo contienen espacios en blanco como si estuvieran vacías, lo cual es útil en muchas validaciones de entrada.
+
+## Puntos a Mejorar
+1. Mejorar el diseño de las Alertas del CRUD, con js o usando algún librería
