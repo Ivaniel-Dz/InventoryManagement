@@ -13,6 +13,7 @@ namespace InventoryManagementWebApp.Controllers
             _appDbContext = appDBContext;
         }
 
+        // Muestra una Lista de los productos con Stock Bajo
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -22,6 +23,19 @@ namespace InventoryManagementWebApp.Controllers
                 .Where(p => p.CantidadStock <= umbralMinimo).ToListAsync();
 
             return View(productosStockBajo);
+        }
+
+        // Muestra una Notificacion Alert, de cuantos productos hay bajo
+        public async Task<IActionResult> AlertStock()
+        {
+            int umbralMinimo = 5;
+
+            var productosStockBajo = await _appDbContext.Productos
+                .Where(p => p.CantidadStock <= umbralMinimo)
+                .CountAsync();
+
+            ViewBag.ProductosConStockBajo = productosStockBajo;
+            return View();
         }
     }
 }

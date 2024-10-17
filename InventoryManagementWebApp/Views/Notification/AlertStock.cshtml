@@ -1,0 +1,7 @@
+﻿@if (ViewBag.ProductosConStockBajo > 0)
+{
+    <div class="alert alert-warning">
+        Hay @ViewBag.ProductosConStockBajo productos con inventario bajo.
+        <a href="@Url.Action("Index", "AlertaInventario")">Ver detalles</a>
+    </div>
+}
