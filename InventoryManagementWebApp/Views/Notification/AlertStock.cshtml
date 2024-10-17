@@ -1,7 +1,69 @@
 ﻿@if (ViewBag.ProductosConStockBajo > 0)
 {
-    <div class="alert alert-warning">
-        Hay @ViewBag.ProductosConStockBajo productos con inventario bajo.
-        <a href="@Url.Action("Index", "AlertaInventario")">Ver detalles</a>
+    <div id="alertModal" class="modal">
+        <div class="modal-content">
+            <a class="close" asp-controller="Producto" asp-action="Index">&times;</a>
+            <p>Hay @ViewBag.ProductosConStockBajo productos con inventario bajo.</p>
+            <a asp-controller="Notification" asp-action="Index">Ver detalles</a>
+        </div>
     </div>
 }
+else
+{
+    <p>No hay productos con inventario bajo.</p>
+}
+
+<script>
+    // Mostrar el modal
+    function showModal() {
+        document.getElementById("alertModal").style.display = "block";
+    }
+
+    // Mostrar el modal cuando haya productos con stock bajo
+    @if (ViewBag.ProductosConStockBajo > 0)
+    {
+        <text>showModal();</text>
+    }
+</script>
+
+
+<style>
+/* Estilos del Modal */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Fijo en la pantalla */
+    z-index: 12; /* Asegúrate de que esté en la parte superior */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Alto completo */
+    overflow: auto; /* Habilita el desplazamiento si es necesario */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+}
+
+.modal-content {
+    background-color: #fefefe; /* Fondo blanco */
+    margin: 15% auto; /* Margen superior e inferior */
+    padding: 20px; /* Espaciado interior */
+    border: 1px solid #888; /* Borde del modal */
+    width: 80%; /* Ancho del modal */
+    max-width: 600px; /* Ancho máximo */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+.close {
+    color: #aaa; /* Color del texto del botón de cerrar */
+    float: right; /* Alinear a la derecha */
+    font-size: 28px; /* Tamaño del texto */
+    font-weight: bold; /* Negrita */
+    cursor: pointer; /* Cambiar el cursor al pasar el mouse */
+}
+
+.close:hover,
+.close:focus {
+    color: black; /* Color al pasar el mouse */
+    text-decoration: none; /* Sin subrayado */
+    cursor: pointer; /* Cambiar el cursor al pasar el mouse */
+}
+</style>
