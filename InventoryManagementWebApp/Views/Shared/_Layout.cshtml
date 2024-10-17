@@ -20,10 +20,11 @@
                     {
                         <li><a class="menu-item active" asp-controller="Producto" asp-action="Index">Productos</a></li>
                         <li><a class="menu-item" asp-controller="Producto" asp-action="Create">Agregar Producto</a></li>
+                        <li><a class="menu-item" asp-controller="Categoria" asp-action="Create">Categoría</a></li>
                         <li><a class="menu-item" asp-controller="Movimiento" asp-action="Index">Movimiento Inventario</a></li>
                         <li><a class="menu-item" asp-controller="Movimiento" asp-action="Create">Saliada/Entreda</a></li>
-                        <li><a class="menu-item" asp-controller="Categoria" asp-action="Create">Agregar Categoría</a></li>
-                        <li><a class="menu-item" >Ver Reportes</a></li>
+                        <li><a class="menu-item"> Reportes </a></li>
+                        <li><a class="menu-item" asp-controller="Notification" asp-action="Index"> Notificaciones </a></li>
                     }
                     @if (User.IsInRole("Admin"))
                     {

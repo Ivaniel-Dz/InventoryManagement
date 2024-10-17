@@ -1,0 +1,39 @@
+﻿@model List<InventoryManagementWebApp.Models.Producto>;
+
+<title>Productos con Inventario Bajo</title>
+
+<link rel="stylesheet" href="~/css/table.css" />
+
+<div class="table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Producto</th>
+                <th>Código</th>
+                <th>Cantidad Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int i = 1;
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>@item.Nombre</td>
+                        <td>@item.CantidadStock</td>
+                        <td>@item.CodigoProducto</td>
+                    </tr>
+                    i++;
+                }
+            }
+        </tbody>
+    </table>
+
+    @if (!Model.Any())
+    {
+        <p class="text-enpty">No hay productos con inventario bajo.</p>
+    }
+
+</div>
