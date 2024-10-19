@@ -15,24 +15,38 @@
         <aside class="sidebar-container">
             <div class="logo-section">
                 <span class="logo">Sistema de Inventario</span>
+                @{
+                    var controller = ViewContext.RouteData.Values["controller"] as string;
+                    var action = ViewContext.RouteData.Values["action"] as string;
+                }
                 <ul class="menu">
                     @if (User.IsInRole("Empleado"))
                     {
-                        <li><a class="menu-item active" asp-controller="Producto" asp-action="Index">Productos</a></li>
-                        <li><a class="menu-item" asp-controller="Producto" asp-action="Create">Agregar Producto</a></li>
-                        <li><a class="menu-item" asp-controller="Categoria" asp-action="Create">Categoría</a></li>
-                        <li><a class="menu-item" asp-controller="Movimiento" asp-action="Index">Movimiento Inventario</a></li>
-                        <li><a class="menu-item" asp-controller="Movimiento" asp-action="Create">Saliada/Entreda</a></li>
-                        <li><a class="menu-item"> Reportes </a></li>
-                        <li><a class="menu-item" asp-controller="Notification" asp-action="Index"> Notificaciones </a></li>
+                        <li>
+                            <a class="menu-item @(controller == "Producto" && action == "Index" ? "active" : "")" asp-controller="Producto" asp-action="Index">Productos</a>
+                        </li>
+                        <li>
+                            <a class="menu-item @(controller == "Movimiento" && action == "Index" ? "active" : "")" asp-controller="Movimiento" asp-action="Index">Movimiento Inventario</a>
+                        </li>
+                        <li>
+                            <a class="menu-item @(controller == "Reporte" && action == "Stock" ? "active" : "")" asp-controller="Reporte" asp-action="Stock">Reportes</a>
+                        </li>
+                        <li>
+                            <a class="menu-item @(controller == "Notification" && action == "Index" ? "active" : "")" asp-controller="Notification" asp-action="Index">Notificaciones</a>
+                        </li>
                     }
                     @if (User.IsInRole("Admin"))
                     {
-                        <li><a class="menu-item active" asp-controller="Usuario" asp-action="Index">Usuarios</a></li>
-                        <li><a class="menu-item" asp-controller="Usuario" asp-action="Create">Nuevo Usuario</a></li>
+                        <li>
+                            <a class="menu-item @(controller == "Usuario" && action == "Index" ? "active" : "")" asp-controller="Usuario" asp-action="Index">Usuarios</a>
+                        </li>
+                        <li>
+                            <a class="menu-item @(controller == "Usuario" && action == "Create" ? "active" : "")" asp-controller="Usuario" asp-action="Create">Nuevo Usuario</a>
+                        </li>
                     }
-                    
                 </ul>
+
+
             </div>
 
             <div class="user-section">
@@ -56,10 +70,8 @@
         <div class="box-content">
             <header class="header">
                 <div class="header-container">
-                    <div class="search-container">
-                        <input type="text" placeholder="Search..." class="search-input">
-                    </div>
                     <div class="icon-container">
+                    @if (User.IsInRole("Empleado")) {
                         <a class="icon alert-icon" asp-controller="Notification" asp-action="AlertStock">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bell" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -67,6 +79,7 @@
                                 <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
                             </svg>
                         </a>
+                     }
                         <a class="icon logout-icon" asp-controller="Acceso" asp-action="Exit"> 
                             <span> Salir </span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">

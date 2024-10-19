@@ -1,9 +1,11 @@
 ﻿using InventoryManagementWebApp.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManagementWebApp.Controllers
 {
+    [Authorize(Roles = "Empleado")]
     public class NotificationController : Controller
     {
         private readonly AppDBContext _appDbContext;

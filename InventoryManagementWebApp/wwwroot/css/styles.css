@@ -135,19 +135,6 @@ input, button {
     align-items: center;
 }
 
-/* Estilos para la barra de búsqueda */
-.search-container {
-    display: flex;
-    align-items: center;
-}
-
-.search-input {
-    padding: 8px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-    margin-right: 10px;
-}
-
 /* Estilos para los íconos */
 .icon-container {
     display: flex;
