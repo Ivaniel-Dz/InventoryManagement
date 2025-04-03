@@ -12,15 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryManagementWebApp.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20241008064846_AddDefaultRoleToUser")]
-    partial class AddDefaultRoleToUser
+    [Migration("20250402063527_FirstMigrate")]
+    partial class FirstMigrate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("ProductVersion", "8.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);

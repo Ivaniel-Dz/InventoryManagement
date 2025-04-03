@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ivaniel\\Documents\\Proyectos\\InventoryManagementWebApp\\InventoryManagementWebApp\\InventoryManagementWebApp.csproj": {}
+    "C:\\Users\\Ivan\\Documents\\Project-C-Sharp\\InventoryManagement\\InventoryManagementWebApp\\InventoryManagementWebApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ivaniel\\Documents\\Proyectos\\InventoryManagementWebApp\\InventoryManagementWebApp\\InventoryManagementWebApp.csproj": {
+    "C:\\Users\\Ivan\\Documents\\Project-C-Sharp\\InventoryManagement\\InventoryManagementWebApp\\InventoryManagementWebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ivaniel\\Documents\\Proyectos\\InventoryManagementWebApp\\InventoryManagementWebApp\\InventoryManagementWebApp.csproj",
+        "projectUniqueName": "C:\\Users\\Ivan\\Documents\\Project-C-Sharp\\InventoryManagement\\InventoryManagementWebApp\\InventoryManagementWebApp.csproj",
         "projectName": "InventoryManagementWebApp",
-        "projectPath": "C:\\Users\\Ivaniel\\Documents\\Proyectos\\InventoryManagementWebApp\\InventoryManagementWebApp\\InventoryManagementWebApp.csproj",
-        "packagesPath": "C:\\Users\\Ivaniel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ivaniel\\Documents\\Proyectos\\InventoryManagementWebApp\\InventoryManagementWebApp\\obj\\",
+        "projectPath": "C:\\Users\\Ivan\\Documents\\Project-C-Sharp\\InventoryManagement\\InventoryManagementWebApp\\InventoryManagementWebApp.csproj",
+        "packagesPath": "C:\\Users\\Ivan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Ivan\\Documents\\Project-C-Sharp\\InventoryManagement\\InventoryManagementWebApp\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Ivaniel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Ivan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -40,7 +43,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -92,7 +96,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
