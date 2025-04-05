@@ -77,14 +77,9 @@ El sistema utiliza **autenticación basada en cookies** para gestionar la sesió
    - **`IsNullOrWhiteSpace`**: Además de comprobar si es nula o vacía, también considera las cadenas que contienen solo espacios en blanco como vacías.
 
 ## Puntos a Mejorar
-
-1. **Usar Servicios**: Para separar la lógica del controlador con los servicios.
-2. **CRUD para Categorías**: Agregar las operaciones de edición y eliminación en el módulo de categorías.
-3. **Barra de Búsqueda**: Incluir la lógica de búsqueda de productos en el inventario, permitiendo a los usuarios encontrar productos más fácilmente.
-4. **Mensajes de Confirmación**: Agregar un modelo para manejar mensajes de confirmación cuando se realicen operaciones como eliminación o actualización de datos.
-5. **Reporte de Movimiento**: Implementar en el controlador de Reportes, la generación de reporte para Movimiento de Inventario similar a la de Productos.
-6. **Pasar el Front a Angular**: El diseño hecho con cshtml pasar a Angular.
-7. **Diseño de Dashboard**: Mejorar aun mas el diseño del dashboard agregando iconos a los menus y submenu a reporte.
+1. **Mensajes de Confirmación**: Agregar un modelo para manejar mensajes de confirmación cuando se realicen operaciones como eliminación o actualización de datos.
+2. **Reporte de Movimiento**: Implementar en el controlador de Reportes, la generación de reporte para Movimiento de Inventario similar a la de Productos.
+3. **Pasar el Front a Angular**: Pasar el diseño hecho con Razor a Angular.
 
 ## Conclusión
 

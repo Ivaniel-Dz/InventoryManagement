@@ -71,6 +71,7 @@ namespace InventoryManagementWebApp.Controllers
             List<Claim> claims = new List<Claim>()
             {
                 // Agrega una reclamacines que incluye:
+                new Claim(ClaimTypes.NameIdentifier, userFound.Id.ToString()),
                 new Claim(ClaimTypes.Name, userFound.Nombre),
                 new Claim(ClaimTypes.Email, userFound.Correo),
                 // Accede al nombre del rol a través de la propiedad de navegación

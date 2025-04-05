@@ -56,7 +56,7 @@
             </div>
 
             <div class="user-section">
-                <a href="#" class="user-profile">
+                <a class="user-profile" asp-controller="Usuario" asp-action="Edit" asp-route-id="@User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).Select(c => c.Value).SingleOrDefault()">
                     <img src="https://robohash.org/user-profile"
                          alt="User"
                          class="profile-picture" />
@@ -71,6 +71,7 @@
                     </div>
                 </a>
             </div>
+
         </aside>
 
         <div class="box-content">
