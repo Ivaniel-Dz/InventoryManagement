@@ -18,6 +18,13 @@ namespace InventoryManagementWebApp.Controllers
 
         // Vista para agregar Categoria de Producto
         [HttpGet]
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        // Vista para agregar Categoria de Producto
+        [HttpGet]
         public IActionResult Create()
         {
             return View();

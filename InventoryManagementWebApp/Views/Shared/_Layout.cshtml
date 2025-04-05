@@ -26,6 +26,9 @@
                             <a class="menu-item @(controller == "Producto" && action == "Index" ? "active" : "")" asp-controller="Producto" asp-action="Index">Productos</a>
                         </li>
                         <li>
+                            <a class="menu-item @(controller == "Categoria" && action == "Index" ? "active" : "")" asp-controller="Categoria" asp-action="Index">Categorias</a>
+                        </li>
+                        <li>
                             <a class="menu-item @(controller == "Movimiento" && action == "Index" ? "active" : "")" asp-controller="Movimiento" asp-action="Index">Movimiento Inventario</a>
                         </li>
                         <li>
@@ -38,10 +41,13 @@
                     @if (User.IsInRole("Admin"))
                     {
                         <li>
-                            <a class="menu-item @(controller == "Usuario" && action == "Index" ? "active" : "")" asp-controller="Usuario" asp-action="Index">Usuarios</a>
+                            <a class="menu-item @(controller == "Admin" && action == "Index" ? "active" : "")" asp-controller="Admin" asp-action="Index">Usuarios</a>
                         </li>
                         <li>
-                            <a class="menu-item @(controller == "Usuario" && action == "Create" ? "active" : "")" asp-controller="Usuario" asp-action="Create">Nuevo Usuario</a>
+                            <a class="menu-item @(controller == "Admin" && action == "Create" ? "active" : "")" asp-controller="Admin" asp-action="Create">Nuevo Usuario</a>
+                        </li>
+                        <li>
+                            <a class="menu-item @(controller == "Rol" && action == "Index" ? "active" : "")" asp-controller="Rol" asp-action="Index">Roles</a>
                         </li>
                     }
                 </ul>

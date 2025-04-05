@@ -93,8 +93,10 @@ namespace InventoryManagementWebApp.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             Usuario usuario = await _appDbContext.Usuarios.FirstAsync(u => u.Id == id);
+            
             _appDbContext.Usuarios.Remove(usuario);
             await _appDbContext.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 

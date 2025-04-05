@@ -40,12 +40,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNvXFByaXZhY3kuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Ivan/Documents/Project-C-Sharp/InventoryManagement/InventoryManagementWebApp/Views/Admin/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ivan/Documents/Project-C-Sharp/InventoryManagement/InventoryManagementWebApp/Views/Admin/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Ivan/Documents/Project-C-Sharp/InventoryManagement/InventoryManagementWebApp/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ivan/Documents/Project-C-Sharp/InventoryManagement/InventoryManagementWebApp/Views/Categoria/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ivan/Documents/Project-C-Sharp/InventoryManagement/InventoryManagementWebApp/Views/Categoria/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ivan/Documents/Project-C-Sharp/InventoryManagement/InventoryManagementWebApp/Views/Movimiento/Create.cshtml]
@@ -96,16 +108,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ivan/Documents/Project-C-Sharp/InventoryManagement/InventoryManagementWebApp/Views/Usuario/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xDcmVhdGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Ivan/Documents/Project-C-Sharp/InventoryManagement/InventoryManagementWebApp/Views/Usuario/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xFZGl0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Ivan/Documents/Project-C-Sharp/InventoryManagement/InventoryManagementWebApp/Views/Usuario/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ivan/Documents/Project-C-Sharp/InventoryManagement/InventoryManagementWebApp/Views/_ViewImports.cshtml]

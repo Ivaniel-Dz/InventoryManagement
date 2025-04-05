@@ -16,6 +16,7 @@ using InventoryManagementWebApp.Services;
 
 namespace InventoryManagementWebApp.Controllers
 {
+    [AllowAnonymous]
     public class AccesoController : Controller
     {
         // Contexto de BBDD para interatuar con las tablas
@@ -103,7 +104,7 @@ namespace InventoryManagementWebApp.Controllers
             }
             else if (userFound.Role.Rol == "Admin")
             {
-                return RedirectToAction("Index", "Usuario");
+                return RedirectToAction("Index", "Admin");
             }
 
             // Si no coincide ningún rol, redirigir a una página por defecto.
