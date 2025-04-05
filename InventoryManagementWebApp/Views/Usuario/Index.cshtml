@@ -20,7 +20,6 @@
                 <th>Id</th>
                 <th>Nombre Completo</th>
                 <th>Correo</th>
-                <th>Rol</th>
                 <th></th>
             </tr>
         </thead>
@@ -32,7 +31,6 @@
                         <td>@i</td>
                         <td>@item.Nombre</td>
                         <td>@item.Correo</td>
-                        <td>@item.Rol</td>
                         <td>
                             <a class="icon-btn btn-edit" asp-controller="Usuario" asp-action="Edit" asp-route-id="@item.Id">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">

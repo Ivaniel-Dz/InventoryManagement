@@ -27,7 +27,7 @@ namespace InventoryManagementWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Categoria categoria)
         {
-            var existingCategory = await _appDbContext.Categorias.FirstOrDefaultAsync(c => c.NombreCategoria == categoria.NombreCategoria);
+            var existingCategory = await _appDbContext.Categorias.FirstOrDefaultAsync(c => c.Nombre == categoria.Nombre);
 
             if (existingCategory != null) {
                 // Si ya existe, mostrar mensaje de error

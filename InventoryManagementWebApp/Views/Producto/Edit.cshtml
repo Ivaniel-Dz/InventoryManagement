@@ -1,4 +1,4 @@
-﻿@model InventoryManagementWebApp.ViewModels.ProductoViewModel
+﻿@model InventoryManagementWebApp.DTOs.ProductoDTO
 
 <title>Editar Producto</title>
 <link rel="stylesheet" href="~/css/form.css" />
@@ -22,7 +22,7 @@
                             <option value=""> Seleccione una Categoría </option>
                             @foreach (var item in Model.Categorias)
                             {
-                                <option value="@item.Id">@item.NombreCategoria</option>
+                                <option value="@item.Id">@item.Nombre</option>
                             }
                         </select>
                     </div>

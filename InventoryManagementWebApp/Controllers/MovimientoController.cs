@@ -1,6 +1,6 @@
 ﻿using InventoryManagementWebApp.Data;
 using InventoryManagementWebApp.Models;
-using InventoryManagementWebApp.ViewModels;
+using InventoryManagementWebApp.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -36,7 +36,7 @@ namespace InventoryManagementWebApp.Controllers
 
         // Agregar Movimiento
         [HttpPost]
-        public async Task<IActionResult> Create(Inventario model)
+        public async Task<IActionResult> Create(InventarioDTO model)
         {
             if (ModelState.IsValid)
             {
@@ -52,11 +52,11 @@ namespace InventoryManagementWebApp.Controllers
                 }
 
                 // Actualiza la cantidad en Stock segun el tipo de movimiento
-                if (model.TipoMovimiento == "Entrada")
+                if (model.Movimiento == "Entrada")
                 {
                     producto.CantidadStock += model.Cantidad;
 
-                } else if (model.TipoMovimiento == "Salida") {
+                } else if (model.Movimiento == "Salida") {
                     if (producto.CantidadStock < model.Cantidad)
                     {
                         ModelState.AddModelError("", "La cantidad de salida excede el stock disponible.");
@@ -70,7 +70,7 @@ namespace InventoryManagementWebApp.Controllers
                 var movimientoInventario = new MovimientoInventario
                 {
                     ProductoId = model.ProductoId,
-                    TipoMovimiento = model.TipoMovimiento,
+                    Movimiento = model.Movimiento,
                     Fecha = model.Fecha,
                     Cantidad = model.Cantidad,
                     Descripcion = model.Descripcion,
@@ -92,21 +92,21 @@ namespace InventoryManagementWebApp.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             // Busca el movimiento del producto a editar 
-            var movimiento = await _appDbContext.MovimientoInventarios
+            var movimientoInventario = await _appDbContext.MovimientoInventarios
                 .Include(m => m.Producto).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (movimiento == null) { return NotFound(); }
+            if (movimientoInventario == null) { return NotFound(); }
 
             // Crea los productos
             var productos = await _appDbContext.Productos.ToListAsync();
 
-            var model = new Inventario()
+            var model = new InventarioDTO()
             {
-                ProductoId = movimiento.ProductoId,
-                TipoMovimiento = movimiento.TipoMovimiento,
-                Fecha = movimiento.Fecha,
-                Cantidad = movimiento.Cantidad,
-                Descripcion = movimiento.Descripcion,
+                ProductoId = movimientoInventario.ProductoId,
+                Movimiento = movimientoInventario.Movimiento,
+                Fecha = movimientoInventario.Fecha,
+                Cantidad = movimientoInventario.Cantidad,
+                Descripcion = movimientoInventario.Descripcion,
                 Productos = productos
             };
 
@@ -115,22 +115,22 @@ namespace InventoryManagementWebApp.Controllers
 
         // Editar el movimiento seleccionado por id
         [HttpPost]
-        public async Task<IActionResult> Edit(Inventario model)
+        public async Task<IActionResult> Edit(InventarioDTO model)
         {
             if (ModelState.IsValid)
             {
                 // Busca el Movimiento del Inventario en la BBDD
-                var movimiento = await _appDbContext.MovimientoInventarios.FirstOrDefaultAsync(m => m.Id == model.Id);
+                var movimientoInventario = await _appDbContext.MovimientoInventarios.FirstOrDefaultAsync(m => m.Id == model.Id);
 
                 // verifica si el mooviento existe
-                if (movimiento == null)
+                if (movimientoInventario == null)
                 {
                     TempData["Mensaje"] = "Movimiento no encontrado.";
                     return NotFound();
                 }
 
                 // Obtener el producto relacionado con el movimiento
-                var producto = await _appDbContext.Productos.FirstOrDefaultAsync(p => p.Id == movimiento.ProductoId);
+                var producto = await _appDbContext.Productos.FirstOrDefaultAsync(p => p.Id == movimientoInventario.ProductoId);
                 if (producto == null)
                 {
                     TempData["Mensaje"] = "Producto no encontrado.";
@@ -138,24 +138,24 @@ namespace InventoryManagementWebApp.Controllers
                 }
 
                 // Revertir la cantidad de stock del producto según el movimiento original
-                if (movimiento.TipoMovimiento == "Entrada")
+                if (movimientoInventario.Movimiento == "Entrada")
                 {
-                    producto.CantidadStock -= movimiento.Cantidad;
+                    producto.CantidadStock -= movimientoInventario.Cantidad;
                 }
-                else if (movimiento.TipoMovimiento == "Salida")
+                else if (movimientoInventario.Movimiento == "Salida")
                 {
-                    producto.CantidadStock += movimiento.Cantidad;
+                    producto.CantidadStock += movimientoInventario.Cantidad;
                 }
 
                 // Actualiza solo si el valor es no nulo o no vacío
-                movimiento.ProductoId = model.ProductoId != 0 ? model.ProductoId : movimiento.ProductoId;
-                movimiento.TipoMovimiento = !string.IsNullOrEmpty(model.TipoMovimiento) ? model.TipoMovimiento : movimiento.TipoMovimiento;
-                movimiento.Fecha = model.Fecha != DateOnly.MinValue ? model.Fecha : movimiento.Fecha; //Actualiza la fecha si es distindo al anterior
-                movimiento.Cantidad = model.Cantidad != 0 ? model.Cantidad : movimiento.Cantidad;
-                movimiento.Descripcion = !string.IsNullOrEmpty(model.Descripcion) ? model.Descripcion : movimiento.Descripcion;
+                movimientoInventario.ProductoId = model.ProductoId != 0 ? model.ProductoId : movimientoInventario.ProductoId;
+                movimientoInventario.Movimiento = !string.IsNullOrEmpty(model.Movimiento) ? model.Movimiento : movimientoInventario.Movimiento;
+                movimientoInventario.Fecha = model.Fecha != DateOnly.MinValue ? model.Fecha : movimientoInventario.Fecha; //Actualiza la fecha si es distindo al anterior
+                movimientoInventario.Cantidad = model.Cantidad != 0 ? model.Cantidad : movimientoInventario.Cantidad;
+                movimientoInventario.Descripcion = !string.IsNullOrEmpty(model.Descripcion) ? model.Descripcion : movimientoInventario.Descripcion;
 
                 // Volver a obtener el producto en caso de que se haya cambiado el ProductoId
-                producto = await _appDbContext.Productos.FirstOrDefaultAsync(p => p.Id == movimiento.ProductoId);
+                producto = await _appDbContext.Productos.FirstOrDefaultAsync(p => p.Id == movimientoInventario.ProductoId);
                 if (producto == null)
                 {
                     TempData["Mensaje"] = "Producto no encontrado.";
@@ -163,13 +163,13 @@ namespace InventoryManagementWebApp.Controllers
                 }
 
                 // Actualizar la cantidad de stock según el nuevo movimiento
-                if (movimiento.TipoMovimiento == "Entrada")
+                if (movimientoInventario.Movimiento == "Entrada")
                 {
-                    producto.CantidadStock += movimiento.Cantidad;
+                    producto.CantidadStock += movimientoInventario.Cantidad;
                 }
-                else if (movimiento.TipoMovimiento == "Salida")
+                else if (movimientoInventario.Movimiento == "Salida")
                 {
-                    producto.CantidadStock -= movimiento.Cantidad;
+                    producto.CantidadStock -= movimientoInventario.Cantidad;
                 }
 
                 // Guarda los cambios en la BBDD
@@ -189,18 +189,18 @@ namespace InventoryManagementWebApp.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             // Busca el movimiento referenciado con producto por su Id
-            var movimiento = await _appDbContext.MovimientoInventarios
+            var movimientoInventario = await _appDbContext.MovimientoInventarios
                 .Include(m => m.Producto).FirstAsync(m => m.Id == id);
 
             // verfica si existe le movimiento del producto
-            if (movimiento == null)
+            if (movimientoInventario == null)
             {
                 TempData["Mensaje"] = "Movimiento no encontrado";
                 return RedirectToAction(nameof(Index));
             }
 
             // elimina solo el movimeinto, no el producto
-            _appDbContext.MovimientoInventarios.Remove(movimiento);
+            _appDbContext.MovimientoInventarios.Remove(movimientoInventario);
             await _appDbContext.SaveChangesAsync();
 
             TempData["Mensaje"] = "Movimiento de Producto eliminado correctamente.";

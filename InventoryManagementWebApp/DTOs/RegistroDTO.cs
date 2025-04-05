@@ -1,6 +1,6 @@
-﻿namespace InventoryManagementWebApp.ViewModels
+﻿namespace InventoryManagementWebApp.DTOs
 {
-    public class User
+    public class RegistroDTO
     {
         public string Nombre { get; set; }
         public string Correo { get; set; }

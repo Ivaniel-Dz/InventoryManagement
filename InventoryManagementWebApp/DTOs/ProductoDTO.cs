@@ -1,8 +1,8 @@
 ﻿using InventoryManagementWebApp.Models;
 
-namespace InventoryManagementWebApp.ViewModels
+namespace InventoryManagementWebApp.DTOs
 {
-    public class ProductoViewModel
+    public class ProductoDTO
     {
         public int Id { get; set; }
         public string Nombre { get; set; }

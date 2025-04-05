@@ -1,6 +1,6 @@
 ﻿using InventoryManagementWebApp.Data;
 using InventoryManagementWebApp.Models;
-using InventoryManagementWebApp.ViewModels;
+using InventoryManagementWebApp.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -32,7 +32,7 @@ namespace InventoryManagementWebApp.Controllers
             var categorias = await _appDbContext.Categorias.ToListAsync();
 
             // Crear un nuevo producto con las categorías cargadas
-            var model = new ProductoViewModel
+            var model = new ProductoDTO
             {
                 Categorias = categorias // Pasar las categorías al ViewModel
             };
@@ -41,7 +41,7 @@ namespace InventoryManagementWebApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ProductoViewModel model)
+        public async Task<IActionResult> Create(ProductoDTO model)
         {
             // Verificar si ya existe un producto con el mismo código
             var existingProduct = await _appDbContext.Productos
@@ -87,7 +87,7 @@ namespace InventoryManagementWebApp.Controllers
             var categorias = await _appDbContext.Categorias.ToListAsync();
 
             // Crea un ViewModel con los datos del producto y lista de categorias
-            var model = new ProductoViewModel()
+            var model = new ProductoDTO()
             {
                 Id = producto.Id,
                 Nombre = producto.Nombre,
@@ -105,7 +105,7 @@ namespace InventoryManagementWebApp.Controllers
 
         // Editamos el producto seleccionado por Id
         [HttpPost]
-        public async Task<IActionResult> Edit(ProductoViewModel model)
+        public async Task<IActionResult> Edit(ProductoDTO model)
         {
             if (!ModelState.IsValid)
             {

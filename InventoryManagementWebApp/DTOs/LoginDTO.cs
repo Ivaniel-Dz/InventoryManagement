@@ -1,6 +1,6 @@
-﻿namespace InventoryManagementWebApp.ViewModels
+﻿namespace InventoryManagementWebApp.DTOs
 {
-    public class Login
+    public class LoginDTO
     {
         public string Correo {  get; set; }
         public string Password { get; set; }

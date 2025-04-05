@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using InventoryManagementWebApp.Data;
-using InventoryManagementWebApp.ViewModels;
+using InventoryManagementWebApp.DTOs;
 using InventoryManagementWebApp.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
@@ -43,10 +43,11 @@ namespace InventoryManagementWebApp.Controllers
 
         // Verifica el usuario al tratar de ingresar
         [HttpPost]
-        public async Task<IActionResult> Login(Login model)
+        public async Task<IActionResult> Login(LoginDTO model)
         {
             // Busca en la base de datos un usuario que coincida con el correo y la clave.
             Usuario? userFound = await _appDbContext.Usuarios
+                .Include(u => u.Role)
                 .Where(u =>
                     u.Correo == model.Correo &&
                     u.Password == _encryptPass.encryptSHA256(model.Password)
@@ -59,13 +60,20 @@ namespace InventoryManagementWebApp.Controllers
                 return RedirectToAction("Login"); // Retorna la vista con el mensaje de error.
             }
 
+            if(userFound.Role == null)
+            {
+                TempData["Mensaje"] = "Error de configuración: Usuario sin rol asignado.";
+                return RedirectToAction("Login");
+            }
+
             // Crea una lista de reclamaciones (claims) que representan la identidad del usuario.
             List<Claim> claims = new List<Claim>()
             {
                 // Agrega una reclamacines que incluye:
-                new Claim(ClaimTypes.Name, userFound.Nombre), //Nombre
-                new Claim(ClaimTypes.Email, userFound.Correo), //Correo
-                new Claim(ClaimTypes.Role, userFound.Rol) // Rol
+                new Claim(ClaimTypes.Name, userFound.Nombre),
+                new Claim(ClaimTypes.Email, userFound.Correo),
+                // Accede al nombre del rol a través de la propiedad de navegación
+                new Claim(ClaimTypes.Role, userFound.Role.Rol)
             };
 
             // Crea una identidad basada en las reclamaciones usando autenticación de cookies.
@@ -89,11 +97,11 @@ namespace InventoryManagementWebApp.Controllers
 
 
             // Condicion para redirigir a la pagina principal segun su rol después de iniciar sesión.
-            if (userFound.Rol == "Empleado")
+            if (userFound.Role.Rol == "Empleado")
             {
                 return RedirectToAction("Index", "Producto");
             }
-            else if (userFound.Rol == "Admin")
+            else if (userFound.Role.Rol == "Admin")
             {
                 return RedirectToAction("Index", "Usuario");
             }
@@ -111,7 +119,7 @@ namespace InventoryManagementWebApp.Controllers
 
         // Crear Usuario Nuevo
         [HttpPost]
-        public async Task<IActionResult> Create(User model)
+        public async Task<IActionResult> Create(RegistroDTO model)
         {
             if (model.Password != model.ConfirPassword)
             {

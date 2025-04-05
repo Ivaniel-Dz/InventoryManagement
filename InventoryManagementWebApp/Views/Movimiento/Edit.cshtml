@@ -1,4 +1,4 @@
-﻿@model InventoryManagementWebApp.ViewModels.Inventario
+﻿@model InventoryManagementWebApp.DTOs.InventarioDTO
 
 <title>Registrar Movimiento</title>
 <link rel="stylesheet" href="~/css/form.css" />
@@ -26,7 +26,7 @@
 
                     <div class="input-group full">
                         <label for="TipoMovimiento" class="label">Tipo de Movimiento</label>
-                        <select class="input" asp-for="TipoMovimiento">
+                        <select class="input" asp-for="Movimiento">
                             <option value="Entrada">Entrada</option>
                             <option value="Salida">Salida</option>
                         </select>

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryManagementWebApp.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20250403060050_SecondMigration")]
-    partial class SecondMigration
+    [Migration("20250405052932_FirtsMigration")]
+    partial class FirtsMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,14 +37,14 @@ namespace InventoryManagementWebApp.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<string>("NombreCategoria")
+                    b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categoria", (string)null);
+                    b.ToTable("Categorias", (string)null);
                 });
 
             modelBuilder.Entity("InventoryManagementWebApp.Models.MovimientoInventario", b =>
@@ -65,13 +65,13 @@ namespace InventoryManagementWebApp.Migrations
                     b.Property<DateOnly>("Fecha")
                         .HasColumnType("date");
 
-                    b.Property<int>("ProductoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TipoMovimiento")
+                    b.Property<string>("Movimiento")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("ProductoId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -118,7 +118,25 @@ namespace InventoryManagementWebApp.Migrations
 
                     b.HasIndex("CategoriaId");
 
-                    b.ToTable("Producto", (string)null);
+                    b.ToTable("Productos", (string)null);
+                });
+
+            modelBuilder.Entity("InventoryManagementWebApp.Models.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Rol")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("InventoryManagementWebApp.Models.Usuario", b =>
@@ -144,16 +162,16 @@ namespace InventoryManagementWebApp.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Rol")
-                        .IsRequired()
+                    b.Property<int>("RolId")
                         .ValueGeneratedOnAdd()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)")
-                        .HasDefaultValue("Empleado");
+                        .HasColumnType("int")
+                        .HasDefaultValue(2);
 
                     b.HasKey("Id");
 
-                    b.ToTable("Usuario", (string)null);
+                    b.HasIndex("RolId");
+
+                    b.ToTable("Usuarios", (string)null);
                 });
 
             modelBuilder.Entity("InventoryManagementWebApp.Models.MovimientoInventario", b =>
@@ -178,6 +196,17 @@ namespace InventoryManagementWebApp.Migrations
                     b.Navigation("Categoria");
                 });
 
+            modelBuilder.Entity("InventoryManagementWebApp.Models.Usuario", b =>
+                {
+                    b.HasOne("InventoryManagementWebApp.Models.Role", "Role")
+                        .WithMany("Usuarios")
+                        .HasForeignKey("RolId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+                });
+
             modelBuilder.Entity("InventoryManagementWebApp.Models.Categoria", b =>
                 {
                     b.Navigation("Productos");
@@ -186,6 +215,11 @@ namespace InventoryManagementWebApp.Migrations
             modelBuilder.Entity("InventoryManagementWebApp.Models.Producto", b =>
                 {
                     b.Navigation("MovimientoInventarios");
+                });
+
+            modelBuilder.Entity("InventoryManagementWebApp.Models.Role", b =>
+                {
+                    b.Navigation("Usuarios");
                 });
 #pragma warning restore 612, 618
         }
