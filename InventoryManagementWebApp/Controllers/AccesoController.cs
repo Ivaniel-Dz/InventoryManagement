@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using System.Diagnostics;
+using InventoryManagementWebApp.Services;
 
 /*
  * Controlador para Crear Usario y Acceso a Login
@@ -19,12 +20,15 @@ namespace InventoryManagementWebApp.Controllers
     {
         // Contexto de BBDD para interatuar con las tablas
         private readonly AppDBContext _appDbContext;
+        // Inyencion de dependencia
+        private readonly EncryptPass _encryptPass;
 
-        // Constructor recibe la instancia del contexto de BBDD
-        public AccesoController(AppDBContext appDbContext)
+        // Constructor
+        public AccesoController(AppDBContext appDbContext, EncryptPass encryptPass)
         {
             // Asigna el contexto recibido a la variable local
             _appDbContext = appDbContext;
+            _encryptPass = encryptPass;
         }
 
         // Muestra la Vista de Login
@@ -45,7 +49,7 @@ namespace InventoryManagementWebApp.Controllers
             Usuario? userFound = await _appDbContext.Usuarios
                 .Where(u =>
                     u.Correo == model.Correo &&
-                    u.Password == model.Password
+                    u.Password == _encryptPass.encryptSHA256(model.Password)
                 ).FirstOrDefaultAsync();
 
             // Condicion para el proceso de no encontro usuario
@@ -128,7 +132,7 @@ namespace InventoryManagementWebApp.Controllers
             {
                 Nombre = model.Nombre,
                 Correo = model.Correo,
-                Password = model.Password,
+                Password = _encryptPass.encryptSHA256(model.Password)
             };
 
             //Agrega y Guarda nuevo usauario a la BBDD

@@ -1,4 +1,5 @@
 using InventoryManagementWebApp.Data;
+using InventoryManagementWebApp.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.CodeAnalysis.Options;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,9 @@ builder.Services.AddDbContext<AppDBContext>(options =>
     // Cadena de Conexion SQL Server
     options.UseSqlServer(builder.Configuration.GetConnectionString("connection"));
 });
+
+// Registrar servicios personalizados
+builder.Services.AddSingleton<EncryptPass>();
 
 // Autenticacion de Login Config
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

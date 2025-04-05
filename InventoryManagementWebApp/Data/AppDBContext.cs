@@ -32,7 +32,7 @@ namespace InventoryManagementWebApp.Data
                 tb.Property(col => col.Id).UseIdentityColumn().ValueGeneratedOnAdd();
                 tb.Property(col => col.Nombre).HasMaxLength(50);
                 tb.Property(col => col.Correo).HasMaxLength(50);
-                tb.Property(col => col.Password).HasMaxLength(50);
+                tb.Property(col => col.Password).HasMaxLength(100);
                 tb.Property(col => col.Rol).HasMaxLength(30).HasDefaultValue("Empleado");
             });
 
@@ -43,7 +43,7 @@ namespace InventoryManagementWebApp.Data
                 tb.HasKey(col => col.Id);
                 tb.Property(col => col.Id).UseIdentityColumn().ValueGeneratedOnAdd();
                 tb.Property(col => col.NombreCategoria).HasMaxLength(50);
-                tb.Property(col => col.Descripcion).HasMaxLength(50);
+                tb.Property(col => col.Descripcion).HasMaxLength(250);
             });
 
             //Configuracion de la tabla Producto
@@ -58,7 +58,7 @@ namespace InventoryManagementWebApp.Data
                 tb.Property(col => col.PrecioVenta).HasColumnType("decimal(10,2)");
                 tb.Property(col => col.CantidadStock).HasColumnType("int");
                 tb.Property(col => col.CodigoProducto).HasMaxLength(50);
-                tb.Property(col => col.Descripcion).HasMaxLength(50);
+                tb.Property(col => col.Descripcion).HasMaxLength(250);
 
                 // Relacion Producto - Categoria
                 tb.HasOne<Categoria>(p => p.Categoria)
@@ -77,7 +77,7 @@ namespace InventoryManagementWebApp.Data
                 tb.Property(col => col.Fecha).HasColumnType("date");
                 tb.Property(col => col.ProductoId).HasColumnType("int");
                 tb.Property(col => col.Cantidad).HasColumnType("int");
-                tb.Property(col => col.Descripcion).HasMaxLength (50);
+                tb.Property(col => col.Descripcion).HasMaxLength (250);
 
                 // Relacion MovimientoInvetario - Producto
                 tb.HasOne(m => m.Producto)
