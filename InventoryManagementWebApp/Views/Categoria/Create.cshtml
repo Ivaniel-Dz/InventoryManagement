@@ -2,6 +2,7 @@
 
 <title>Agregar Categoria</title>
 <link rel="stylesheet" href="~/css/form.css" />
+<link rel="stylesheet" href="~/css/alert.css" />
 
 <section class="container">
     <div class="grid-layout">
@@ -22,14 +23,21 @@
                         </textarea>
                     </div>
 
-                    <div class="input-group full">
-                        <button class="btn-pr" type="submit">Confirmar</button>
+                    <div class="form-actions">
+                        <button class="btn btn-primary" type="submit">Confirmar</button>
                     </div>
 
-                    @if (TempData["Mensaje"] != null)
+                    @if (TempData["Success"] != null)
                     {
-                        <div class="input-group alerta full" role="alert">
-                            @TempData["Mensaje"]
+                        <div class="alert alert-success text-center" role="alert">
+                            @TempData["Success"]
+                        </div>
+                    }
+
+                    @if (TempData["Warning"] != null)
+                    {
+                        <div class="alert alert-warning text-center" role="alert">
+                            @TempData["Warning"]
                         </div>
                     }
 

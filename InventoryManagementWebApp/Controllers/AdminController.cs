@@ -42,7 +42,7 @@ namespace InventoryManagementWebApp.Controllers
             if (existingUser != null)
             {
                 // Si el correo ya existe, mostrar mensaje de error
-                TempData["Mensaje"] = "Ya existe un usuario con este correo.";
+                TempData["Warning"] = "Ya existe un usuario con este correo.";
                 return RedirectToAction("Create");
             }
 
@@ -50,7 +50,8 @@ namespace InventoryManagementWebApp.Controllers
             await _appDbContext.Usuarios.AddAsync(usuario);
             await _appDbContext.SaveChangesAsync();
 
-            return RedirectToAction("Index", "Usuario");
+            TempData["Success"] = "Usuario Creado exitosamente.";
+            return RedirectToAction("Index", "Admin");
         }
 
 
@@ -69,8 +70,15 @@ namespace InventoryManagementWebApp.Controllers
             var existingUser = await _appDbContext.Usuarios.FindAsync(usuario.Id);
             if (existingUser == null)
             {
-                TempData["Mensaje"] = "El usuario no fue encontrado.";
+                TempData["Warning"] = "El usuario no fue encontrado.";
                 return RedirectToAction(nameof(Index));
+            }
+
+            // Verificar si el correo ya está en uso por otro usuario
+            if (await _appDbContext.Usuarios.AnyAsync(u => u.Correo == usuario.Correo && u.Id != usuario.Id))
+            {
+                TempData["Warning"] = "El correo ya está en uso.";
+                return RedirectToAction(nameof(Edit), new { id = usuario.Id });
             }
 
             // Actualiza las propiedades si el nuevo valor no es null o vacío
@@ -79,10 +87,12 @@ namespace InventoryManagementWebApp.Controllers
             existingUser.Password = string.IsNullOrWhiteSpace(usuario.Password) ? existingUser.Password : usuario.Password;
 
             await _appDbContext.SaveChangesAsync();
+
+            TempData["Success"] = "Usuario actualizado exitosamente.";
             return RedirectToAction(nameof(Index));
         }
 
-        //Eliminar
+        //Eliminar un Usurio
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
@@ -91,6 +101,7 @@ namespace InventoryManagementWebApp.Controllers
             _appDbContext.Usuarios.Remove(usuario);
             await _appDbContext.SaveChangesAsync();
 
+            TempData["Success"] = "El Usuario ha sido eliminada exitosamente.";
             return RedirectToAction(nameof(Index));
         }
 

@@ -2,6 +2,7 @@
 
 <title>Registro Nuevo</title>
 <link rel="stylesheet" href="~/css/form.css" />
+<link rel="stylesheet" href="~/css/alert.css" />
 
 <section class="container">
     <div class="grid-layout">
@@ -25,21 +26,34 @@
                         <input type="password" id="Password" class="input" asp-for="Password" />
                     </div>
 
-                    <div class="input-group">
-                        <button class="btn-pr" type="submit">Actualizar</button>
+                    <div class="form-actions">
+                        <!-- Botón para Actualizar -->
+                        <button class="btn btn-primary" type="submit">Actualizar</button>
+                        <!-- Botón de Eliminar con confirmación -->
+                        <button class="btn btn-danger" type="button"
+                                onclick="if(confirm('¿Estás seguro de eliminar este usuario?')) { document.getElementById('deleteForm').submit(); }">
+                            Eliminar
+                        </button>
                     </div>
+
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success text-center" role="alert">
+                            @TempData["Success"]
+                        </div>
+                    }
 
                     @if (TempData["Warning"] != null)
                     {
                         <div class="alert alert-warning text-center" role="alert">
-                            @TempData["Warinig"]
+                            @TempData["Warning"]
                         </div>
                     }
 
                 </form>
-                    
-                <form asp-controller="Usuario" asp-action="Delete" asp-route-id="@Model.Id" method="post">
-                    <button class="btn-pr" data-mdb-button-init data-mdb-ripple-init type="submit">Elminar</button>
+
+                <!-- Formulario oculto para eliminación -->
+                <form id="deleteForm" asp-controller="Usuario" asp-action="Delete" asp-route-id="@Model.Id" method="post" style="display: none;">
                 </form>
 
             </div>

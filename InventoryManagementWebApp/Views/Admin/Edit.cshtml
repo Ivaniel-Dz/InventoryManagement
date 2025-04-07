@@ -2,14 +2,16 @@
 
 <title>Registro Nuevo</title>
 <link rel="stylesheet" href="~/css/form.css" />
+<link rel="stylesheet" href="~/css/alert.css" />
 
 <section class="container">
     <div class="grid-layout">
         <main class="form-container">
             <div class="form-content">
+
                 <h1 class="form-title">Actualizar Usuario</h1>
 
-                <form class="form-grid" asp-controller="Usuario" asp-action="Edit" method="post">
+                <form class="form-grid" asp-controller="Admin" asp-action="Edit" method="post">
                     <input asp-for="Id" type="hidden" />
                     <div class="input-group full">
                         <label for="FirstName" class="label">Nombre Completo</label>
@@ -26,15 +28,27 @@
                         <input type="password" id="Password" class="input" asp-for="Password" />
                     </div>
 
-                    <div class="input-group">
-                        <a class="btn-link" asp-controller="Usuario" asp-action="Index">Regresar</a>
+                    <div class="form-actions">
+                        <a class="btn btn-secondary" asp-controller="Admin" asp-action="Index">Regresar</a>
+                        <button class="btn btn-primary" type="submit">Actualizar</button>
                     </div>
 
-                    <div class="input-group">
-                        <button class="btn-pr" type="submit">Actualizar</button>
-                    </div>
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success text-center" role="alert">
+                            @TempData["Success"]
+                        </div>
+                    }
+
+                    @if (TempData["Warning"] != null)
+                    {
+                        <div class="alert alert-warning text-center" role="alert">
+                            @TempData["Warning"]
+                        </div>
+                    }
 
                 </form>
+
             </div>
         </main>
     </div>

@@ -49,7 +49,7 @@ namespace InventoryManagementWebApp.Controllers
 
             if (existingProduct != null)
             {
-                TempData["Mensaje"] = "Ya existe un Producto Igual.";
+                TempData["Warning"] = "Ya existe un Producto Igual.";
                 // Si ya existe el producto, recargar las categorías y volver a mostrar el formulario
                 model.Categorias = await _appDbContext.Categorias.ToListAsync();
                 return View(model);
@@ -70,6 +70,7 @@ namespace InventoryManagementWebApp.Controllers
             await _appDbContext.Productos.AddAsync(producto);
             await _appDbContext.SaveChangesAsync();
 
+            TempData["Success"] = "Producto creada Correctamente!";
             return RedirectToAction("Index", "Producto");
         }
 
@@ -120,7 +121,7 @@ namespace InventoryManagementWebApp.Controllers
             // Verifica si el producto existe
             if (producto == null)
             {
-                TempData["Mensaje"] = "Producto no encontrado.";
+                TempData["Warning"] = "Producto no encontrado.";
                 return NotFound();
             }
 
@@ -136,7 +137,7 @@ namespace InventoryManagementWebApp.Controllers
             // Guarda los cambios en la BBDD
             await _appDbContext.SaveChangesAsync();
 
-            TempData["Mensaje"] = "Producto actualizado correctamente.";
+            TempData["Success"] = "Producto actualizado correctamente.";
             //                      View     Controller
             return RedirectToAction("Index", "Producto"); // Redirige a view de productos despues de guardar
         }
@@ -153,7 +154,7 @@ namespace InventoryManagementWebApp.Controllers
             // Verifica si el producto existe
             if (producto == null)
             {
-                TempData["Mensaje"] = "Producto no encontrado.";
+                TempData["Warning"] = "Producto no encontrado.";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -161,7 +162,7 @@ namespace InventoryManagementWebApp.Controllers
             _appDbContext.Productos.Remove(producto);
             await _appDbContext.SaveChangesAsync();
 
-            TempData["Mensaje"] = "Producto eliminado correctamente.";
+            TempData["Success"] = "Producto eliminado correctamente.";
             return RedirectToAction(nameof(Index));
         }
 

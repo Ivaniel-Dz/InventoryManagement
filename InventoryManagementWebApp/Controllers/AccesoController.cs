@@ -57,13 +57,13 @@ namespace InventoryManagementWebApp.Controllers
             // Condicion para el proceso de no encontro usuario
             if (userFound == null)
             {
-                TempData["Mensaje"] = "Contraseña o Correo Incorrecto.";
+                TempData["Warning"] = "Contraseña o Correo Incorrecto.";
                 return RedirectToAction("Login"); // Retorna la vista con el mensaje de error.
             }
 
             if(userFound.Role == null)
             {
-                TempData["Mensaje"] = "Error de configuración: Usuario sin rol asignado.";
+                TempData["Warning"] = "Error de configuración: Usuario sin rol asignado.";
                 return RedirectToAction("Login");
             }
 
@@ -125,7 +125,7 @@ namespace InventoryManagementWebApp.Controllers
         {
             if (model.Password != model.ConfirPassword)
             {
-                TempData["Mensaje"] = "Las Contraseña no coinciden."; // Muestra un mensaje de error
+                TempData["Warning"] = "Las Contraseña no coinciden."; // Muestra un mensaje de error
                 return RedirectToAction("Create"); // Retorna la vista con el mensaje de error.
             }
 
@@ -133,7 +133,7 @@ namespace InventoryManagementWebApp.Controllers
             var existingUser = await _appDbContext.Usuarios.FirstOrDefaultAsync(u => u.Correo == model.Correo);
             if (existingUser != null)
             {
-                TempData["Mensaje"] = "Ya existe un usuario con este correo."; // Muestra un mensaje de error
+                TempData["Warning"] = "Ya existe un usuario con este correo."; // Muestra un mensaje de error
                 return RedirectToAction("Create"); // Retorna la vista con el mensaje de error.
             }
 
@@ -152,11 +152,11 @@ namespace InventoryManagementWebApp.Controllers
             // Verifica si el usuario fue creado correctamente.
             if (usuario.Id != 0)
             {
-                //                      View, Controller
-                return RedirectToAction("Login", "Acceso");
+                TempData["Success"] = "Cuenta Creada Correctamente.";
+                return RedirectToAction("Login", "Acceso"); // View, Controller
             }
 
-            TempData["Mensaje"] = "No se creo el usuario."; // Muestra un mensaje de error
+            TempData["Warning"] = "No se creo el usuario."; // Muestra un mensaje de error
             return RedirectToAction("Create"); // Retorna la vista con el mensaje de error.
         }
 

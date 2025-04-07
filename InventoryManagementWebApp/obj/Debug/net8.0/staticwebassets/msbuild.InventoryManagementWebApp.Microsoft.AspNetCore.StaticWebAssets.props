@@ -1,5 +1,23 @@
 ﻿<Project>
   <ItemGroup>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\alert.css'))">
+      <SourceType>Package</SourceType>
+      <SourceId>InventoryManagementWebApp</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/InventoryManagementWebApp</BasePath>
+      <RelativePath>css/alert.css</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>oayate9aap</Fingerprint>
+      <Integrity>IBH4ynz3gX99FgujbNWFdCYBq2zsCyWyCNucmyuntzo=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\alert.css'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\form.css'))">
       <SourceType>Package</SourceType>
       <SourceId>InventoryManagementWebApp</SourceId>
@@ -12,8 +30,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>wo0d50gz51</Fingerprint>
-      <Integrity>wCmWAxWmbex3qdwsf0EZnqMeJatdqP4JtXDCmNgicqo=</Integrity>
+      <Fingerprint>rmrcreh4zh</Fingerprint>
+      <Integrity>4xmy0NIQ7MonVS0VoPCRm1bIy2lOTSkhQbiXSmCsRrg=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\form.css'))</OriginalItemSpec>
@@ -30,8 +48,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>6fdpiauvkv</Fingerprint>
-      <Integrity>MmonreTBBWRjmP001bqBmNZxnNFgNqRl3cdjdDHUv4Q=</Integrity>
+      <Fingerprint>euru72j63l</Fingerprint>
+      <Integrity>irimDrE9zH7YoJVqNuhMkVC+TOq47H6DI8upNHxlSzs=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\login.css'))</OriginalItemSpec>
@@ -66,8 +84,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>lgej6t9cix</Fingerprint>
-      <Integrity>C0ar6T/bd7mjeQ8VfKPCBbdpWatQNsdgG27g8mLxqcE=</Integrity>
+      <Fingerprint>ea1vsquw33</Fingerprint>
+      <Integrity>usOc6wFm2ervVlLslYTyLSTSgcuQO4cQjGwAbsj/bGw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\register.css'))</OriginalItemSpec>
@@ -84,8 +102,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>zybw7z3wsb</Fingerprint>
-      <Integrity>ZfhTKsT5OD6QSXVyzKN0x+jC8+YEpwGOvVoCelNak0I=</Integrity>
+      <Fingerprint>gzafjxjhxt</Fingerprint>
+      <Integrity>XGxGirkWh9FTYdIRpyDyq0JQ6IEZRUt31pWDdE1mvYo=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\styles.css'))</OriginalItemSpec>

@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\InventoryManagementWebApp.6a7yno72vl.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Ivan\\Documents\\Project-C-Sharp\\InventoryManagement\\InventoryManagementWebApp\\wwwroot\\css\\alert.css",
+      "PackagePath": "staticwebassets\\css\\alert.css"
+    },
+    {
       "Id": "C:\\Users\\Ivan\\Documents\\Project-C-Sharp\\InventoryManagement\\InventoryManagementWebApp\\wwwroot\\css\\form.css",
       "PackagePath": "staticwebassets\\css\\form.css"
     },

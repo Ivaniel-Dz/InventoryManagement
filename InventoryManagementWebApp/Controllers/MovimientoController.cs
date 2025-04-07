@@ -80,6 +80,7 @@ namespace InventoryManagementWebApp.Controllers
                 _appDbContext.MovimientoInventarios.Add(movimientoInventario);
                 await _appDbContext.SaveChangesAsync();
 
+                TempData["Success"] = "Movimiento Agregado.";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -125,7 +126,7 @@ namespace InventoryManagementWebApp.Controllers
                 // verifica si el mooviento existe
                 if (movimientoInventario == null)
                 {
-                    TempData["Mensaje"] = "Movimiento no encontrado.";
+                    TempData["Warning"] = "Movimiento no encontrado.";
                     return NotFound();
                 }
 
@@ -133,7 +134,7 @@ namespace InventoryManagementWebApp.Controllers
                 var producto = await _appDbContext.Productos.FirstOrDefaultAsync(p => p.Id == movimientoInventario.ProductoId);
                 if (producto == null)
                 {
-                    TempData["Mensaje"] = "Producto no encontrado.";
+                    TempData["Warning"] = "Producto no encontrado.";
                     return NotFound();
                 }
 
@@ -158,7 +159,7 @@ namespace InventoryManagementWebApp.Controllers
                 producto = await _appDbContext.Productos.FirstOrDefaultAsync(p => p.Id == movimientoInventario.ProductoId);
                 if (producto == null)
                 {
-                    TempData["Mensaje"] = "Producto no encontrado.";
+                    TempData["Warning"] = "Producto no encontrado.";
                     return NotFound();
                 }
 
@@ -175,7 +176,7 @@ namespace InventoryManagementWebApp.Controllers
                 // Guarda los cambios en la BBDD
                 await _appDbContext.SaveChangesAsync();
                 // Mensaje de Connfirmación
-                TempData["Mensaje"] = "Inventario actualizado correctamente.";
+                TempData["Success"] = "Inventario actualizado correctamente.";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -195,7 +196,7 @@ namespace InventoryManagementWebApp.Controllers
             // verfica si existe le movimiento del producto
             if (movimientoInventario == null)
             {
-                TempData["Mensaje"] = "Movimiento no encontrado";
+                TempData["Warning"] = "Movimiento no encontrado";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -203,7 +204,7 @@ namespace InventoryManagementWebApp.Controllers
             _appDbContext.MovimientoInventarios.Remove(movimientoInventario);
             await _appDbContext.SaveChangesAsync();
 
-            TempData["Mensaje"] = "Movimiento de Producto eliminado correctamente.";
+            TempData["Success"] = "Movimiento de Producto eliminado correctamente.";
             return RedirectToAction(nameof(Index));
 
         }

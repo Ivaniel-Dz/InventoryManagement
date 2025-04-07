@@ -39,13 +39,14 @@ namespace InventoryManagementWebApp.Controllers
 
             if (existing == null) {
                 // Si ya existe, mostrar mensaje de error
-                TempData["Mensaje"] = "Ya existe el Rol.";
+                TempData["Warning"] = "Ya existe el Rol.";
                 return RedirectToAction("Create");
             }
 
             await _appDbContext.Roles.AddAsync(role);
             await _appDbContext.SaveChangesAsync();
 
+            TempData["Success"] = "El Rol creado correctamente.";
             return RedirectToAction("Index", "Admin");
         }
 
@@ -65,7 +66,7 @@ namespace InventoryManagementWebApp.Controllers
             var existingRole = await _appDbContext.Roles.FindAsync(role.Id);
 
             if (existingRole == null) {
-                TempData["Mensaje"] = "El Rol no fue encontrado.";
+                TempData["Warning"] = "El Rol no fue encontrado.";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -74,6 +75,7 @@ namespace InventoryManagementWebApp.Controllers
 
             await _appDbContext.SaveChangesAsync();
 
+            TempData["Success"] = "Rol actualizada correctamente.";
             return RedirectToAction(nameof(Index));
         }
 
@@ -85,6 +87,7 @@ namespace InventoryManagementWebApp.Controllers
             _appDbContext.Roles.Remove(role);
             await _appDbContext.SaveChangesAsync();
 
+            TempData["Success"] = "Rol eliminada correctamente.";
             return RedirectToAction(nameof(Index));
         }
 

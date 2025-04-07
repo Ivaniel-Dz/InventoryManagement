@@ -2,6 +2,7 @@
 
 <title>Registrar Movimiento</title>
 <link rel="stylesheet" href="~/css/form.css" />
+<link rel="stylesheet" href="~/css/alert.css" />
 
 <section class="container">
     <div class="grid-layout">
@@ -47,18 +48,22 @@
                         <textarea id="venta" class="input" style="height: 50px" asp-for="Descripcion"></textarea>
                     </div>
 
-                    <div class="input-group">
-                        <a class="btn-link" asp-controller="Producto" asp-action="Index">Regresar</a>
+                    <div class="form-actions">
+                        <a class="btn btn-secondary" asp-controller="Producto" asp-action="Index">Regresar</a>
+                        <button class="btn btn-primary" type="submit">Confirmar</button>
                     </div>
 
-                    <div class="input-group">
-                        <button class="btn-pr" type="submit">Confirmar</button>
-                    </div>
-
-                    @if (TempData["Mensaje"] != null)
+                    @if (TempData["Success"] != null)
                     {
-                        <div class="alerta input-group full" role="alert">
-                            @TempData["Mensaje"]
+                        <div class="alert alert-success text-center" role="alert">
+                            @TempData["Success"]
+                        </div>
+                    }
+
+                    @if (TempData["Warning"] != null)
+                    {
+                        <div class="alert alert-warning text-center" role="alert">
+                            @TempData["Warning"]
                         </div>
                     }
 

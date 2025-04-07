@@ -38,12 +38,14 @@ namespace InventoryManagementWebApp.Controllers
 
             if (existingCategory != null) {
                 // Si ya existe, mostrar mensaje de error
-                TempData["Mensaje"] = "Ya existe esta Categoría.";
+                TempData["Warning"] = "Ya existe esta Categoría.";
                 return RedirectToAction("Create", "Categoria");
             }
 
             await _appDbContext.Categorias.AddAsync(categoria);
             await _appDbContext.SaveChangesAsync();
+
+            TempData["Success"] = "Categoría Creada Correctamente.";
             return RedirectToAction("Index", "Producto");
         } 
     }

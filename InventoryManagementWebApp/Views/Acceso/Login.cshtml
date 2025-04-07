@@ -6,6 +6,7 @@
 <title>Login</title>
 
 <link rel="stylesheet" href="~/css/login.css" />
+<link rel="stylesheet" href="~/css/alert.css" />
 
 <section class="section">
     <div class="container">
@@ -28,19 +29,27 @@
                     <input class="form-input" type="password" placeholder="••••••••" asp-for="Password" required />
                 </label>
 
-                @if (TempData["Mensaje"] != null)
-                {
-                    <div class="alerta" role="alert">
-                        @TempData["Mensaje"]
-                    </div>
-                }
-
                 <div class="form-footer">
                     <p class="links">
                         <a class="link" asp-controller="Acceso" asp-action="Create">Crear cuenta</a>
                     </p>
                     <button type="submit" class="btn-primary"> Ingresar </button>
                 </div>
+
+                <!-- Alertas -->
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success text-center" role="alert">
+                        @TempData["Success"]
+                    </div>
+                }
+
+                @if (TempData["Warning"] != null)
+                {
+                    <div class="alert alert-warning text-center" role="alert">
+                        @TempData["Warning"]
+                    </div>
+                }
 
             </form>
         </div>

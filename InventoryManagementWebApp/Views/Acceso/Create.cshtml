@@ -5,6 +5,7 @@
 }
 <title>Registro Nuevo</title>
 <link rel="stylesheet" href="~/css/register.css" />
+<link rel="stylesheet" href="~/css/alert.css" />
 
 <section class="container">
   <div class="grid-layout">
@@ -43,10 +44,17 @@
             </p>
           </div>
 
-           @if (TempData["Mensaje"] != null)
+          @if (TempData["Success"] != null)
            {
-              <div class="alerta" role="alert">
-               @TempData["Mensaje"]
+              <div class="alert alert-success text-center" role="alert">
+                  @TempData["Success"]
+              </div>
+           }
+
+          @if (TempData["Warning"] != null)
+           {
+              <div class="alert alert-warning text-center" role="alert">
+                  @TempData["Warning"]
               </div>
            }
 

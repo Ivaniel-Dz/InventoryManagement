@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using InventoryManagementWebApp.Services;
 using Microsoft.AspNetCore.Authentication;
 
-
+// Controller para manjer Perfil de Usuario
 namespace InventoryManagementWebApp.Controllers
 {
     [Authorize(Roles = "Admin,Empleado")]
@@ -25,14 +25,14 @@ namespace InventoryManagementWebApp.Controllers
         }
         
 
-        // Redirige segun el Id a la vista de Editar
+        // Vista para Editar Perfil
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             var user = await _appDbContext.Usuarios.FindAsync(id);
             if (user == null) {
                 TempData["Warning"] = "Usuario no encontrado.";
-                return RedirectToAction("Index", "Producto");
+                return RedirectToAction(nameof(Edit));
             }
 
             // Modelo de la vista para llenar los campos de Edición 
@@ -48,7 +48,7 @@ namespace InventoryManagementWebApp.Controllers
             return View(model);
         }
 
-        // Edita el usuario segun el Id
+        // Edita perfil de Usuario
         [HttpPost]
         public async Task<IActionResult> Edit(Usuario usuario)
         {
@@ -83,11 +83,11 @@ namespace InventoryManagementWebApp.Controllers
             _appDbContext.Usuarios.Update(existingUser);
             await _appDbContext.SaveChangesAsync();
 
-            TempData["Success"] = "Usuario actualizado exitosamente.";
+            TempData["Success"] = "Perfil actualizado exitosamente.";
             return RedirectToAction(nameof(Edit));
         }
 
-        //Eliminar
+        //Eliminar Cuenta de Usuario
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {

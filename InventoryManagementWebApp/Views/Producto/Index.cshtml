@@ -3,6 +3,7 @@
 <title>Tabla de Producto</title>
 
 <link rel="stylesheet" href="~/css/table.css" />
+<link rel="stylesheet" href="~/css/alert.css" />
 
 <div class="table-container">
 
@@ -61,10 +62,17 @@
         </tbody>
     </table>
 
-    @if (TempData["Mensaje"] != null)
+    @if (TempData["Success"] != null)
     {
-        <div class="alerta input-group full" role="alert">
-            @TempData["Mensaje"]
+        <div class="alert alert-success text-center" role="alert">
+            @TempData["Success"]
+        </div>
+    }
+
+    @if (TempData["Warning"] != null)
+    {
+        <div class="alert alert-warning text-center" role="alert">
+            @TempData["Warning"]
         </div>
     }
 
