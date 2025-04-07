@@ -3,15 +3,16 @@
 <title>Tabla de Producto</title>
 
 <link rel="stylesheet" href="~/css/table.css" />
+<link rel="stylesheet" href="~/css/button.css" />
 <link rel="stylesheet" href="~/css/alert.css" />
 
 <div class="table-container">
 
-    <h2>Productos</h2>
+    <h2 class="table-title">Productos</h2>
     <div class="header-table">
         <div class="btn-container">
-            <a asp-controller="Producto" asp-action="Create" class="btn-new btn-primary">Producto Nuevo</a>
-            <a asp-controller="Categoria" asp-action="Create" class="btn-new btn-secondary">Categoría Nuevo</a>
+            <a asp-controller="Producto" asp-action="Create" class="btn btn-primary">Producto Nuevo</a>
+            <a asp-controller="Categoria" asp-action="Create" class="btn btn-secondary">Categoría Nuevo</a>
         </div>
         <input type="text" placeholder="Search..." class="search-input">
     </div>
@@ -78,7 +79,7 @@
 
     @if (!ViewData.ModelState.IsValid)
     {
-        <div class="alerta input-group full validation-summary-errors">
+        <div class="alert input-group full validation-summary-errors">
             @Html.ValidationSummary()
         </div>
     }

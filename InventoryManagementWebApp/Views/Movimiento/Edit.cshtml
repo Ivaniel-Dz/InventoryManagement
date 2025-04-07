@@ -2,6 +2,7 @@
 
 <title>Registrar Movimiento</title>
 <link rel="stylesheet" href="~/css/form.css" />
+<link rel="stylesheet" href="~/css/button.css" />
 <link rel="stylesheet" href="~/css/alert.css" />
 
 <section class="container">
@@ -69,7 +70,7 @@
 
                     @if (!ViewData.ModelState.IsValid)
                     {
-                        <div class="alerta input-group full">
+                        <div class="alert input-group full">
                             @Html.ValidationSummary()
                         </div>
                     }

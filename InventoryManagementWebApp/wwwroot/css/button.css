@@ -1,1 +1,53 @@
-﻿
+﻿/* Estilos adicionales para los botones */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    grid-column: span 2;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+/*Estilo de los Botones*/
+.btn {
+    padding: 10px 24px;
+    color: white;
+    border-radius: 0.375rem;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+    .btn:hover {
+        background-color: white;
+    }
+
+/* btn: Primary */
+.btn-primary {
+    border: 1px solid #2563eb;
+    background-color: #2563eb;
+}
+
+    .btn-primary:hover {
+        color: #2563eb;
+    }
+
+/* btn: Secondary */
+.btn-secondary {
+    border: 1px solid #13b958;
+    background-color: #13b958;
+}
+
+    .btn-secondary:hover {
+        color: #13b958;
+    }
+
+/* btn: Danger */
+.btn-danger {
+    border: 1px solid #dc3545;
+    background-color: #dc3545;
+}
+
+    .btn-danger:hover {
+        color: #bd2130;
+    }

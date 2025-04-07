@@ -3,6 +3,7 @@
 <title>Reporte</title>
 
 <link rel="stylesheet" href="~/css/table.css" />
+<link rel="stylesheet" href="~/css/button.css" />
 <link rel="stylesheet" href="~/css/alert.css" />
 
 <div class="table-container">
@@ -10,7 +11,7 @@
     <h2>Reporte de Productos</h2>
     <div class="header-table">
         <div class="btn-container">
-            <a asp-controller="Reporte" asp-action="ExportStockExcel" class="btn-new btn-link-primary">
+            <a asp-controller="Reporte" asp-action="ExportStockExcel" class="btn">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-spreadsheet" width="34" height="34" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M14 3v4a1 1 0 0 0 1 1h4" />
@@ -21,7 +22,7 @@
                 </svg>
             </a>
 
-            <a asp-controller="Reporte" asp-action="ExportStockPDF" class="btn-new">
+            <a asp-controller="Reporte" asp-action="ExportStockPDF" class="btn">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-type-pdf" width="34" height="34" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M14 3v4a1 1 0 0 0 1 1h4" />

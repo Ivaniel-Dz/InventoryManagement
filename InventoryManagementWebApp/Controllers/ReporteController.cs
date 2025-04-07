@@ -18,14 +18,6 @@ namespace InventoryManagementWebApp.Controllers
             _appDbContext = appDBContext;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Movimientos()
-        {
-            //var productos = await _appDbContext.Productos.ToListAsync();
-            var movimiento = await _appDbContext.MovimientoInventarios.Include(m => m.Producto).ToListAsync();
-
-            return View(movimiento);
-        }
 
         public async Task<IActionResult> Stock()
         {
@@ -99,5 +91,6 @@ namespace InventoryManagementWebApp.Controllers
             stream.Position = 0;
             return File(stream, "application/pdf", "ReporteStock.pdf");
         }
+
     }
 }

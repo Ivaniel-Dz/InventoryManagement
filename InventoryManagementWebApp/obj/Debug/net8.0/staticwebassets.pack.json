@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\alert.css"
     },
     {
+      "Id": "C:\\Users\\Ivan\\Documents\\Project-C-Sharp\\InventoryManagement\\InventoryManagementWebApp\\wwwroot\\css\\button.css",
+      "PackagePath": "staticwebassets\\css\\button.css"
+    },
+    {
       "Id": "C:\\Users\\Ivan\\Documents\\Project-C-Sharp\\InventoryManagement\\InventoryManagementWebApp\\wwwroot\\css\\form.css",
       "PackagePath": "staticwebassets\\css\\form.css"
     },
