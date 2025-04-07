@@ -1,4 +1,4 @@
-﻿@model InventoryManagementWebApp.Models.Usuario;
+﻿@model InventoryManagementWebApp.ViewModels.UsuarioVM;
 
 <title>Registro Nuevo</title>
 <link rel="stylesheet" href="~/css/form.css" />
@@ -13,7 +13,7 @@
                 <h1 class="form-title">Actualizar Usuario</h1>
 
                 <form class="form-grid" asp-controller="Admin" asp-action="Edit" method="post">
-                    <input asp-for="Id" type="hidden" />
+                    <!-- Inputs -->
                     <div class="input-group full">
                         <label for="FirstName" class="label">Nombre Completo</label>
                         <input type="text" id="FirstName" class="input" asp-for="Nombre" required />
@@ -29,6 +29,19 @@
                         <input type="password" id="Password" class="input" asp-for="Password" />
                     </div>
 
+                    <!-- Select -->
+                    <div class="input-group full">
+                        <label for="FirstName" class="label"> Roles </label>
+                        <select class="input" asp-for="RolId">
+                            <option value=""> Seleccione una Rol </option>
+                            @foreach (var item in Model.RolesDisponibles)
+                            {
+                                <option value="@item.Id">@item.Rol</option>
+                            }
+                        </select>
+                    </div>
+
+                    <!-- Botones -->
                     <div class="form-actions">
                         <a class="btn btn-secondary" asp-controller="Admin" asp-action="Index">Regresar</a>
                         <button class="btn btn-primary" type="submit">Actualizar</button>

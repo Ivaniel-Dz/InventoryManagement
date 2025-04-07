@@ -1,8 +1,8 @@
 ﻿using InventoryManagementWebApp.Models;
 
-namespace InventoryManagementWebApp.DTOs
+namespace InventoryManagementWebApp.ViewModels
 {
-    public class ProductoDTO
+    public class ProductoVM
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
@@ -11,8 +11,9 @@ namespace InventoryManagementWebApp.DTOs
         public int CantidadStock { get; set; }
         public string CodigoProducto { get; set; }
         public string? Descripcion { get; set; }
-        public int CategoriaId { get; set; } // ID de la categoría seleccionada
+
         // Lista de categorías para el dropdown
+        public int CategoriaId { get; set; }
         public List<Categoria> Categorias { get; set; } = new List<Categoria>();
     }
 }

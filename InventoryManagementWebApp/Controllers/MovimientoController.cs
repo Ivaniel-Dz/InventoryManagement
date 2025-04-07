@@ -1,10 +1,10 @@
 ﻿using InventoryManagementWebApp.Data;
 using InventoryManagementWebApp.Models;
-using InventoryManagementWebApp.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using InventoryManagementWebApp.ViewModels;
 
 namespace InventoryManagementWebApp.Controllers
 {
@@ -36,7 +36,7 @@ namespace InventoryManagementWebApp.Controllers
 
         // Agregar Movimiento
         [HttpPost]
-        public async Task<IActionResult> Create(InventarioDTO model)
+        public async Task<IActionResult> Create(InventarioVM model)
         {
             if (ModelState.IsValid)
             {
@@ -101,7 +101,7 @@ namespace InventoryManagementWebApp.Controllers
             // Crea los productos
             var productos = await _appDbContext.Productos.ToListAsync();
 
-            var model = new InventarioDTO()
+            var model = new InventarioVM()
             {
                 ProductoId = movimientoInventario.ProductoId,
                 Movimiento = movimientoInventario.Movimiento,
@@ -116,7 +116,7 @@ namespace InventoryManagementWebApp.Controllers
 
         // Editar el movimiento seleccionado por id
         [HttpPost]
-        public async Task<IActionResult> Edit(InventarioDTO model)
+        public async Task<IActionResult> Edit(InventarioVM model)
         {
             if (ModelState.IsValid)
             {

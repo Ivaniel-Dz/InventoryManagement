@@ -1,9 +1,9 @@
 ﻿using InventoryManagementWebApp.Data;
 using InventoryManagementWebApp.Models;
-using InventoryManagementWebApp.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using InventoryManagementWebApp.ViewModels;
 
 namespace InventoryManagementWebApp.Controllers
 {
@@ -21,8 +21,8 @@ namespace InventoryManagementWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            List<Producto> lista = await _appDbContext.Productos.Include(p => p.Categoria).ToListAsync();
-            return View(lista);
+            List<Producto> productos = await _appDbContext.Productos.Include(p => p.Categoria).ToListAsync();
+            return View(productos);
         }
 
         [HttpGet]
@@ -32,7 +32,7 @@ namespace InventoryManagementWebApp.Controllers
             var categorias = await _appDbContext.Categorias.ToListAsync();
 
             // Crear un nuevo producto con las categorías cargadas
-            var model = new ProductoDTO
+            var model = new ProductoVM
             {
                 Categorias = categorias // Pasar las categorías al ViewModel
             };
@@ -41,7 +41,7 @@ namespace InventoryManagementWebApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ProductoDTO model)
+        public async Task<IActionResult> Create(ProductoVM model)
         {
             // Verificar si ya existe un producto con el mismo código
             var existingProduct = await _appDbContext.Productos
@@ -55,7 +55,7 @@ namespace InventoryManagementWebApp.Controllers
                 return View(model);
             }
 
-            // Crear un nuevo producto a partir del ViewModel
+            // Asignar los datos al model para guardar
             var producto = new Producto
             {
                 Nombre = model.Nombre,
@@ -87,10 +87,9 @@ namespace InventoryManagementWebApp.Controllers
             // Cargar categorías
             var categorias = await _appDbContext.Categorias.ToListAsync();
 
-            // Crea un ViewModel con los datos del producto y lista de categorias
-            var model = new ProductoDTO()
+            // Asignar los datos al viewModel para el form
+            var model = new ProductoVM()
             {
-                Id = producto.Id,
                 Nombre = producto.Nombre,
                 PrecioCompra = producto.PrecioCompra,
                 PrecioVenta = producto.PrecioVenta,
@@ -106,7 +105,7 @@ namespace InventoryManagementWebApp.Controllers
 
         // Editamos el producto seleccionado por Id
         [HttpPost]
-        public async Task<IActionResult> Edit(ProductoDTO model)
+        public async Task<IActionResult> Edit(ProductoVM model)
         {
             if (!ModelState.IsValid)
             {

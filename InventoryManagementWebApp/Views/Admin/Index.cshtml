@@ -22,6 +22,7 @@
             <tr>
                 <th>Id</th>
                 <th>Nombre Completo</th>
+                <th>Rol</th>
                 <th>Correo</th>
                 <th></th>
             </tr>
@@ -34,6 +35,7 @@
                     <tr>
                         <td>@i</td>
                         <td>@item.Nombre</td>
+                        <td>@item.Role.Rol</td>
                         <td>@item.Correo</td>
                         <td>
                             <a class="icon-btn btn-edit" asp-controller="Admin" asp-action="Edit" asp-route-id="@item.Id">
