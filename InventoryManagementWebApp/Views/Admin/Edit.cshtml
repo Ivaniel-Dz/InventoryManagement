@@ -47,6 +47,7 @@
                         <button class="btn btn-primary" type="submit">Actualizar</button>
                     </div>
 
+                    <!-- Alertas -->
                     @if (TempData["Success"] != null)
                     {
                         <div class="alert alert-success text-center" role="alert">
@@ -58,6 +59,13 @@
                     {
                         <div class="alert alert-warning text-center" role="alert">
                             @TempData["Warning"]
+                        </div>
+                    }
+
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="alert input-group full validation-summary-errors">
+                            @Html.ValidationSummary()
                         </div>
                     }
 

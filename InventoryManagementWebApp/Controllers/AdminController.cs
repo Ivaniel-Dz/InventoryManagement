@@ -1,5 +1,6 @@
 ﻿using InventoryManagementWebApp.Data;
 using InventoryManagementWebApp.Models;
+using InventoryManagementWebApp.Services;
 using InventoryManagementWebApp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +11,14 @@ namespace InventoryManagementWebApp.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
+        // Inyencion de dependencias
         private readonly AppDBContext _appDbContext;
+        private readonly EncryptPass _encryptPass;
 
-        public AdminController(AppDBContext appDbContext)
+        public AdminController(AppDBContext appDbContext, EncryptPass encryptPass)
         {
             _appDbContext = appDbContext;
+            _encryptPass = encryptPass;
         }
 
 
@@ -62,7 +66,7 @@ namespace InventoryManagementWebApp.Controllers
             {
                 Nombre = model.Nombre,
                 Correo = model.Correo,
-                Password = model.Password,
+                Password = _encryptPass.encryptSHA256(model.Password),
                 RolId = model.RolId,
             };
 
@@ -83,7 +87,7 @@ namespace InventoryManagementWebApp.Controllers
             var usuario = await _appDbContext.Usuarios
                 .Include(p => p.Role).FirstOrDefaultAsync(u => u.Id == id);
 
-            if (usuario != null) return NotFound();
+            if (usuario == null) return NotFound();
 
             // Carga los roles
             var roles = await _appDbContext.Roles.ToListAsync();
@@ -105,41 +109,53 @@ namespace InventoryManagementWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(UsuarioVM model)
         {
-
-            // Recarga la lista en caso de que haya errores de validación
-            if (ModelState.IsValid) 
+            // Validación del modelo
+            if (!ModelState.IsValid)
             {
                 model.RolesDisponibles = await _appDbContext.Roles.ToListAsync();
                 return View(model);
             }
 
-            // Busca en la base de datos
+            // Buscar el usuario
             var usuario = await _appDbContext.Usuarios.FirstOrDefaultAsync(u => u.Id == model.Id);
-
-            // Verifica si existe
             if (usuario == null)
             {
                 TempData["Warning"] = "El usuario no fue encontrado.";
                 return RedirectToAction(nameof(Index));
             }
 
-            // Verificar si el correo ya está en uso por otro usuario
-            if (await _appDbContext.Usuarios.AnyAsync(u => u.Correo == usuario.Correo && u.Id != usuario.Id))
+            // Verificar correo único
+            if (await _appDbContext.Usuarios.AnyAsync(u => u.Correo == model.Correo && u.Id != model.Id))
             {
                 TempData["Warning"] = "El correo ya está en uso.";
-                return RedirectToAction(nameof(Edit), new { id = usuario.Id });
+                model.RolesDisponibles = await _appDbContext.Roles.ToListAsync();
+                return View(model);
             }
 
-            // Actualiza solo si el valor es no nulo o no vacío.
+            // Actualizar campos (excepto contraseña)
             usuario.Nombre = string.IsNullOrWhiteSpace(model.Nombre) ? usuario.Nombre : model.Nombre;
             usuario.Correo = string.IsNullOrWhiteSpace(model.Correo) ? usuario.Correo : model.Correo;
-            usuario.Password = string.IsNullOrWhiteSpace(model.Password) ? usuario.Password : model.Password;
             usuario.RolId = model.RolId != 0 ? model.RolId : usuario.RolId;
 
-            await _appDbContext.SaveChangesAsync();
+            // Actualizar contraseña SOLO si se proporcionó una nueva
+            if (!string.IsNullOrWhiteSpace(model.Password))
+            {
+                usuario.Password = _encryptPass.encryptSHA256(model.Password);
+            }
 
-            TempData["Success"] = "Usuario actualizado exitosamente.";
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                _appDbContext.Update(usuario);
+                await _appDbContext.SaveChangesAsync();
+                TempData["Success"] = "Usuario actualizado exitosamente.";
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateException)
+            {
+                TempData["Warning"] = "Error al actualizar el usuario.";
+                model.RolesDisponibles = await _appDbContext.Roles.ToListAsync();
+                return View(model);
+            }
         }
 
         //Eliminar un Usurio

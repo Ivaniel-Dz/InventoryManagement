@@ -82,7 +82,7 @@ namespace InventoryManagementWebApp.Controllers
             var producto = await _appDbContext.Productos
                 .Include(p => p.Categoria).FirstOrDefaultAsync(p => p.Id == id);
 
-            if (producto == null) { return NotFound(); }
+            if (producto == null) return NotFound();
 
             // Cargar categorías
             var categorias = await _appDbContext.Categorias.ToListAsync();

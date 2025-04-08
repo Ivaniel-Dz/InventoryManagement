@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using InventoryManagementWebApp.Data;
-using InventoryManagementWebApp.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using InventoryManagementWebApp.Services;
 using Microsoft.AspNetCore.Authentication;
+using InventoryManagementWebApp.ViewModels;
 
 // Controller para manjer Perfil de Usuario
 namespace InventoryManagementWebApp.Controllers
@@ -29,19 +29,18 @@ namespace InventoryManagementWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var user = await _appDbContext.Usuarios.FindAsync(id);
-            if (user == null) {
+            var usuario = await _appDbContext.Usuarios.FindAsync(id);
+            if (usuario == null) {
                 TempData["Warning"] = "Usuario no encontrado.";
                 return RedirectToAction(nameof(Edit));
             }
 
             // Modelo de la vista para llenar los campos de Edición 
-            var model = new Usuario
+            var model = new UsuarioVM()
             {
-                Id = user.Id,
-                Nombre = user.Nombre,
-                Correo = user.Correo,
-                Password = user.Password,
+                Nombre = usuario.Nombre,
+                Correo = usuario.Correo,
+                Password = usuario.Password,
             };
 
             // Retorna la vista con los datos cargados
@@ -50,37 +49,36 @@ namespace InventoryManagementWebApp.Controllers
 
         // Edita perfil de Usuario
         [HttpPost]
-        public async Task<IActionResult> Edit(Usuario usuario)
+        public async Task<IActionResult> Edit(UsuarioVM model)
         {
             // Buscar al usuario existente por su ID
-            var existingUser = await _appDbContext.Usuarios.FindAsync(usuario.Id);
+            var usuario = await _appDbContext.Usuarios.FindAsync(model.Id);
             
-            if (existingUser == null)
+            if (usuario == null)
             {
                 TempData["Warning"] = "El usuario no fue encontrado.";
                 return RedirectToAction(nameof(Edit));
             }
 
             // Verificar si el correo ya está en uso por otro usuario
-            if ( await _appDbContext.Usuarios.AnyAsync(u => u.Correo == usuario.Correo && u.Id != usuario.Id))
+            if ( await _appDbContext.Usuarios.AnyAsync(u => u.Correo == model.Correo && u.Id != model.Id))
             {
                 TempData["Warning"] = "El correo ya está en uso por otro usuario.";
-                return RedirectToAction(nameof(Edit), new { id = usuario.Id });
+                return RedirectToAction(nameof(Edit), new { id = model.Id });
             }
 
             // Actualiza las propiedades si el nuevo valor no es null o vacío
-            existingUser.Nombre = string.IsNullOrWhiteSpace(usuario.Nombre) ? existingUser.Nombre : usuario.Nombre;
-            existingUser.Correo = string.IsNullOrWhiteSpace(usuario.Correo) ? existingUser.Correo : usuario.Correo;
-            existingUser.Password = string.IsNullOrWhiteSpace(usuario.Password) ? existingUser.Password : usuario.Password;
+            usuario.Nombre = string.IsNullOrWhiteSpace(model.Nombre) ? usuario.Nombre : model.Nombre;
+            usuario.Correo = string.IsNullOrWhiteSpace(model.Correo) ? usuario.Correo : model.Correo;
 
             // Actualizar contraseña solo si se proporciona una nueva
-            if (!string.IsNullOrWhiteSpace(usuario.Password))
+            if (!string.IsNullOrWhiteSpace(model.Password))
             {
-                existingUser.Password = _encryptPass.encryptSHA256(usuario.Password);
+                usuario.Password = _encryptPass.encryptSHA256(model.Password);
             }
 
             // Guardar cambios en la base de datos
-            _appDbContext.Usuarios.Update(existingUser);
+            _appDbContext.Usuarios.Update(usuario);
             await _appDbContext.SaveChangesAsync();
 
             TempData["Success"] = "Perfil actualizado exitosamente.";

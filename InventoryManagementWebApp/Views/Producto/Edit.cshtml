@@ -13,12 +13,13 @@
                 <h1 class="form-title">Editar Producto en Stock</h1>
 
                 <form class="form-grid" asp-controller="Producto" asp-action="Edit" method="post">
-                    <input type="hidden" asp-for="Id" />
+                    <!-- Inputs -->
                     <div class="input-group full">
                         <label for="FirstName" class="label">Producto</label>
                         <input type="text" id="FirstName" class="input" asp-for="Nombre" required />
                     </div>
 
+                    <!-- Select -->
                     <div class="input-group full">
                         <label for="CategoriaId" class="label">Categoria</label>
                         <select class="input" asp-for="CategoriaId">
@@ -30,6 +31,7 @@
                         </select>
                     </div>
 
+                    <!-- Inputs -->
                     <div class="input-group">
                         <label for="compra" class="label">Precio de Compra</label>
                         <input type="number" id="compra" class="input" asp-for="PrecioCompra" required />
@@ -55,11 +57,13 @@
                         <textarea id="venta" class="input" style="height: 50px" asp-for="Descripcion"></textarea>
                     </div>
 
+                    <!-- Botones -->
                     <div class="form-actions">
                         <a class="btn btn-secondary" asp-controller="Producto" asp-action="Index">Regresar</a>
                         <button class="btn btn-primary" type="submit">Confirmar</button>
                     </div>
 
+                    <!-- Alertas -->
                     @if (TempData["Success"] != null)
                     {
                         <div class="alert alert-success text-center" role="alert">
