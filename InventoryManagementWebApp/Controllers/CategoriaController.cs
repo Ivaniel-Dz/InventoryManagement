@@ -18,9 +18,10 @@ namespace InventoryManagementWebApp.Controllers
 
         // Vista para agregar Categoria de Producto
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            List<Categoria> lista = await _appDbContext.Categorias.ToListAsync();
+            return View(lista);
         }
 
         // Vista para agregar Categoria de Producto

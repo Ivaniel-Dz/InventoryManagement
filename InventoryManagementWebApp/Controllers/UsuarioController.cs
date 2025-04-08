@@ -51,7 +51,7 @@ namespace InventoryManagementWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(UsuarioVM model)
         {
-            // Buscar al usuario existente por su ID
+            // Buscar si existe por su ID
             var usuario = await _appDbContext.Usuarios.FindAsync(model.Id);
             
             if (usuario == null)

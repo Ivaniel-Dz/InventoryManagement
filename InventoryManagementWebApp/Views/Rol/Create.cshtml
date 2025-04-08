@@ -1,5 +1,55 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using InventoryManagementWebApp.DTOs
+@model RoleDTO
+
+<title>Crear Roles</title>
+<link rel="stylesheet" href="~/css/form.css" />
+<link rel="stylesheet" href="~/css/button.css" />
+<link rel="stylesheet" href="~/css/alert.css" />
+
+<section class="container">
+    <div class="grid-layout">
+        <main class="form-container" style="padding: 0px">
+            <div class="form-content">
+                <h1 class="form-title"> Crear Roles </h1>
+
+                <form class="form-grid" asp-controller="Rol" asp-action="Create" method="post">
+                    <!-- Inputs -->
+                    <div class="input-group full">
+                        <label for="FirstName" class="label">Rol</label>
+                        <input type="text" id="FirstName" class="input" asp-for="Rol" required />
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="form-actions">
+                        <a class="btn btn-secondary" asp-controller="Rol" asp-action="Index"> Regresar </a>
+                        <button class="btn btn-primary" type="submit"> Confirmar </button>
+                    </div>
+
+                    <!-- Alertas -->
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success text-center" role="alert">
+                            @TempData["Success"]
+                        </div>
+                    }
+
+                    @if (TempData["Warning"] != null)
+                    {
+                        <div class="alert alert-warning text-center" role="alert">
+                            @TempData["Warning"]
+                        </div>
+                    }
+
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="alert input-group full validation-summary-errors">
+                            @Html.ValidationSummary()
+                        </div>
+                    }
+
+                </form>
+
+            </div>
+        </main>
+    </div>
+</section>

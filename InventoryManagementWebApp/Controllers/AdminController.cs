@@ -143,19 +143,13 @@ namespace InventoryManagementWebApp.Controllers
                 usuario.Password = _encryptPass.encryptSHA256(model.Password);
             }
 
-            try
-            {
-                _appDbContext.Update(usuario);
-                await _appDbContext.SaveChangesAsync();
-                TempData["Success"] = "Usuario actualizado exitosamente.";
-                return RedirectToAction(nameof(Index));
-            }
-            catch (DbUpdateException)
-            {
-                TempData["Warning"] = "Error al actualizar el usuario.";
-                model.RolesDisponibles = await _appDbContext.Roles.ToListAsync();
-                return View(model);
-            }
+
+            // Guardar cambios en la base de datos
+            _appDbContext.Usuarios.Update(usuario);
+            await _appDbContext.SaveChangesAsync();
+
+            TempData["Success"] = "Perfil actualizado exitosamente.";
+            return RedirectToAction(nameof(Index));
         }
 
         //Eliminar un Usurio

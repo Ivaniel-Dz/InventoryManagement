@@ -145,12 +145,12 @@ namespace InventoryManagementWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            // Busca el producto por su ID
+            // Busca por su ID
             Producto producto = await _appDbContext.Productos
                 .Include(p => p.Categoria) // Incluye la referencia a Categoría solo si es necesario para mostrar
                 .FirstAsync(p => p.Id == id);
 
-            // Verifica si el producto existe
+            // Verifica si existe
             if (producto == null)
             {
                 TempData["Warning"] = "Producto no encontrado.";
