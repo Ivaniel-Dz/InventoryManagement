@@ -1,6 +1,6 @@
 ﻿@model InventoryManagementWebApp.DTOs.CategoriaDTO;
 
-<title>Agregar Categorías</title>
+<title>Editar Categorías</title>
 <link rel="stylesheet" href="~/css/form.css" />
 <link rel="stylesheet" href="~/css/button.css" />
 <link rel="stylesheet" href="~/css/alert.css" />
@@ -9,10 +9,11 @@
     <div class="grid-layout">
         <main class="form-container">
             <div class="form-content">
-                <h1 class="form-title">Agregar Categoría Nueva</h1>
+                <h1 class="form-title">Editar Categoría</h1>
 
-                <form class="form-grid" asp-controller="Categoria" asp-action="Create" method="post">
+                <form class="form-grid" asp-controller="Categoria" asp-action="Edit" method="post">
 
+                    <!-- Inputs -->
                     <div class="input-group full">
                         <label for="FirstName" class="label"> Categoría </label>
                         <input type="text" id="FirstName" class="input" asp-for="Nombre" required />
@@ -24,10 +25,12 @@
                         </textarea>
                     </div>
 
+                    <!-- Botones -->
                     <div class="form-actions">
-                        <button class="btn btn-primary" type="submit">Confirmar</button>
+                        <button class="btn btn-primary" type="submit"> Actualizar </button>
                     </div>
 
+                    <!-- Alertas -->
                     @if (TempData["Success"] != null)
                     {
                         <div class="alert alert-success text-center" role="alert">
@@ -43,6 +46,7 @@
                     }
 
                 </form>
+
             </div>
         </main>
     </div>

@@ -21,8 +21,8 @@ namespace InventoryManagementWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            List<Role> roles = await _appDbContext.Roles.ToListAsync();
-            return View(roles);
+            List<Role> lista = await _appDbContext.Roles.ToListAsync();
+            return View(lista);
         }
 
 
