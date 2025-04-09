@@ -81,5 +81,36 @@ namespace InventoryManagementWebApp.Controllers
         }
 
 
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        public async Task<IActionResult> BuscarRol(string? term)
+        {
+            // Consulta de la BD con Include para evitar N+1
+            var query = _appDBContext.Roles.AsQueryable();
+
+            // Aplicar filtro solo si hay término de búsqueda
+            if (!string.IsNullOrEmpty(term))
+            {
+                query = query.Where(r =>
+                        r.Rol.Contains(term)
+                      );
+            }
+
+            var roles = await query.ToListAsync();
+
+            // Mensaje de feedback
+            if (!string.IsNullOrEmpty(term) && !roles.Any())
+            {
+                TempData["Warning"] = $"No se encontraron roles para '{term}'.";
+            }
+            else if (!string.IsNullOrEmpty(term))
+            {
+                TempData["Success"] = $"Se encontraron {roles.Count} rol.";
+            }
+
+            return View(roles);
+        }
+
+
     }
 }
