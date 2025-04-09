@@ -9,15 +9,24 @@
 <div class="table-container">
 
     <h2 class="table-title">Productos</h2>
+
     <div class="header-table">
+        <!-- Botones de header -->
         <div class="btn-container">
             <a asp-controller="Producto" asp-action="Create" class="btn btn-primary">Producto Nuevo</a>
             <a asp-controller="Categoria" asp-action="Create" class="btn btn-secondary">Categoría Nuevo</a>
         </div>
-        <input type="text" placeholder="Search..." class="search-input">
+
+        <!-- Botones de header -->
+        <form asp-controller="Search" asp-action="BuscarProducto" method="get">
+            <input type="text" name="term" placeholder="Buscar..." class="search-input">
+        </form>
+
     </div>
 
+    <!-- Tabla -->
     <table class="table">
+
         <thead>
             <tr>
                 <th>Id</th>
@@ -30,6 +39,7 @@
                 <th>Descripción</th>
             </tr>
         </thead>
+
         <tbody>
             @{
                 int i = 1;
@@ -61,8 +71,10 @@
                 }
             }
         </tbody>
+
     </table>
 
+    <!-- Mensaje de Alertas -->
     @if (TempData["Success"] != null)
     {
         <div class="alert alert-success text-center" role="alert">
