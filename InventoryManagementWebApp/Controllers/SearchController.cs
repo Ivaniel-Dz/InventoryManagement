@@ -13,6 +13,8 @@ namespace InventoryManagementWebApp.Controllers
             _appDBContext = appDBContext;
         }
 
+
+        [HttpGet]
         public async Task<IActionResult> BuscarProducto(string? term)
         {
             // Consulta de la BD con Include para evitar N+1
@@ -44,5 +46,8 @@ namespace InventoryManagementWebApp.Controllers
 
             return View(productos);
         }
+
+
+
     }
 }
