@@ -9,11 +9,18 @@
 <div class="table-container">
 
     <h2>Movimiento de Inventario</h2>
+
     <div class="header-table">
+
         <div class="btn-container">
             <a asp-controller="Movimiento" asp-action="Create" class="btn btn-primary">Agregar Movimiento</a>
         </div>
-        <input type="text" placeholder="Search..." class="search-input">
+
+        <!-- Botones de header -->
+        <form asp-controller="Search" asp-action="BuscarMovimiento" method="get">
+            <input type="text" name="term" placeholder="Buscar..." class="search-input">
+        </form>
+
     </div>
 
     <table class="table">

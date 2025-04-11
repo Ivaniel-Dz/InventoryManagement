@@ -80,6 +80,7 @@ El sistema utiliza **autenticación basada en cookies** para gestionar la sesió
 1. **Mensajes de Confirmación**: Agregar un modelo para manejar mensajes de confirmación cuando se realicen operaciones como eliminación o actualización de datos.
 2. **Reporte de Movimiento**: Implementar en el controlador de Reportes, la generación de reporte para Movimiento de Inventario similar a la de Productos.
 3. **Pasar el Front a Angular**: Pasar el diseño hecho con Razor a Angular.
+4. **Pie de Pagina**: Agregamos la lógica de pie de pagina con su enumeración para las tablas.
 
 ## Conclusión
 
