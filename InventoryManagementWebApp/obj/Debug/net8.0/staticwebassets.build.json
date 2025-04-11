@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8wx2a9OwwoZW2OQGujT6rwcbATtNnMjzwNP2K1VC5ug=",
+  "Hash": "abBcXLfGS575n+ikj/g+77svn9Uyn4q24u1uUxIfwGg=",
   "Source": "InventoryManagementWebApp",
   "BasePath": "_content/InventoryManagementWebApp",
   "Mode": "Default",
@@ -199,8 +199,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "gzafjxjhxt",
-      "Integrity": "XGxGirkWh9FTYdIRpyDyq0JQ6IEZRUt31pWDdE1mvYo=",
+      "Fingerprint": "nnv1c47txr",
+      "Integrity": "fd08Gd8vNnHuTD4qGMkaGRhVR6XpyySp3vyaZ3LR7Nw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\styles.css"
@@ -1970,7 +1970,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2992"
+          "Value": "3092"
         },
         {
           "Name": "Content-Type",
@@ -1978,11 +1978,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"XGxGirkWh9FTYdIRpyDyq0JQ6IEZRUt31pWDdE1mvYo=\""
+          "Value": "\"fd08Gd8vNnHuTD4qGMkaGRhVR6XpyySp3vyaZ3LR7Nw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 05 Apr 2025 20:48:19 GMT"
+          "Value": "Fri, 11 Apr 2025 21:26:44 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1992,12 +1992,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-XGxGirkWh9FTYdIRpyDyq0JQ6IEZRUt31pWDdE1mvYo="
+          "Value": "sha256-fd08Gd8vNnHuTD4qGMkaGRhVR6XpyySp3vyaZ3LR7Nw="
         }
       ]
     },
     {
-      "Route": "css/styles.gzafjxjhxt.css",
+      "Route": "css/styles.nnv1c47txr.css",
       "AssetFile": "C:\\Users\\Ivan\\Documents\\Project-C-Sharp\\InventoryManagement\\InventoryManagementWebApp\\wwwroot\\css\\styles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -2007,7 +2007,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2992"
+          "Value": "3092"
         },
         {
           "Name": "Content-Type",
@@ -2015,11 +2015,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"XGxGirkWh9FTYdIRpyDyq0JQ6IEZRUt31pWDdE1mvYo=\""
+          "Value": "\"fd08Gd8vNnHuTD4qGMkaGRhVR6XpyySp3vyaZ3LR7Nw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 05 Apr 2025 20:48:19 GMT"
+          "Value": "Fri, 11 Apr 2025 21:26:44 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2029,7 +2029,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "gzafjxjhxt"
+          "Value": "nnv1c47txr"
         },
         {
           "Name": "label",
@@ -2037,7 +2037,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-XGxGirkWh9FTYdIRpyDyq0JQ6IEZRUt31pWDdE1mvYo="
+          "Value": "sha256-fd08Gd8vNnHuTD4qGMkaGRhVR6XpyySp3vyaZ3LR7Nw="
         }
       ]
     },

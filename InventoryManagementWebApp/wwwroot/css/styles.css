@@ -34,33 +34,45 @@ input, button {
     background-color: #303443;
 }
 
-.logo-section {
+/*Menu */
+.menu-section {
     padding: 24px;
 }
 
-.logo {
-    display: grid;
-    place-content: center;
-    height: 40px;
-    width: 100%;
-    background-color: #303443;
-    color: #f3f4f6;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 8px;
+/* Titulo & Logo */
+.logo-section {
+    display: flex;
+    flex-direction:column;
+    align-items:center;
     text-align: center;
 }
 
+.logo-section .logo-icon {
+    text-align: center;
+    color: #f3f4f6;
+    width: 50px;
+}
+
+.logo-title {
+    color: #f3f4f6;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Opcion de Menu */
 .menu {
     margin-top: 24px;
     list-style: none;
     padding-left: 0;
 }
 
+/*Menu*/
 .menu-item {
-    display: block;
+    display: flex;
+    align-items: center;
     padding: 8px 16px;
     margin-bottom: 12px;
+    gap: 5px;
     font-size: 14px;
     font-weight: 500;
     color: #f3f4f6;
@@ -77,6 +89,11 @@ input, button {
         background-color: #f3f4f6;
         color: #374151;
     }
+
+/* Icon de Menu */
+.menu-item svg {
+    width: 18px;
+}
 
 .user-section {
     border-top: 1px solid #141720;
@@ -129,29 +146,34 @@ input, button {
 .header-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 15px;
+    padding: 0px 10px;
     display: flex;
     justify-content: end;
     align-items: center;
 }
 
-/* Estilos para los íconos */
+/* Iconos de Header: Salir y Notificación */
 .icon-container {
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
-.icon {
+.icon-header {
     display: flex;
     text-decoration: none;
+    align-items: center;
     color: #141720;
     transition: color 0.3s;
-    margin-left: 10px;
+    padding: 2px 5px;
 }
 
-    .icon:hover {
-        transform: scale(1.1);
-        box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+    .icon-header:hover, .icon-header svg:hover {
+        border-radius: 8px;
+        color: white;
+        stroke: white;
+        background-color: #374151;
     }
