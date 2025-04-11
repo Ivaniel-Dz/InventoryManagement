@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "abBcXLfGS575n+ikj/g+77svn9Uyn4q24u1uUxIfwGg=",
+  "Hash": "/fyOwBw33U5sU/tiIWJ2KNLz5z/CR65FGI0GRRSt3lE=",
   "Source": "InventoryManagementWebApp",
   "BasePath": "_content/InventoryManagementWebApp",
   "Mode": "Default",
@@ -199,8 +199,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "nnv1c47txr",
-      "Integrity": "fd08Gd8vNnHuTD4qGMkaGRhVR6XpyySp3vyaZ3LR7Nw=",
+      "Fingerprint": "4xro57oijd",
+      "Integrity": "WERNpnZF4Sl2OukmZkDCAa+pD7RnGrFM35kT8tMSEcA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\styles.css"
@@ -1960,6 +1960,51 @@
       ]
     },
     {
+      "Route": "css/styles.4xro57oijd.css",
+      "AssetFile": "C:\\Users\\Ivan\\Documents\\Project-C-Sharp\\InventoryManagement\\InventoryManagementWebApp\\wwwroot\\css\\styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3371"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"WERNpnZF4Sl2OukmZkDCAa+pD7RnGrFM35kT8tMSEcA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 11 Apr 2025 22:32:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "4xro57oijd"
+        },
+        {
+          "Name": "label",
+          "Value": "css/styles.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-WERNpnZF4Sl2OukmZkDCAa+pD7RnGrFM35kT8tMSEcA="
+        }
+      ]
+    },
+    {
       "Route": "css/styles.css",
       "AssetFile": "C:\\Users\\Ivan\\Documents\\Project-C-Sharp\\InventoryManagement\\InventoryManagementWebApp\\wwwroot\\css\\styles.css",
       "Selectors": [],
@@ -1970,7 +2015,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3092"
+          "Value": "3371"
         },
         {
           "Name": "Content-Type",
@@ -1978,11 +2023,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"fd08Gd8vNnHuTD4qGMkaGRhVR6XpyySp3vyaZ3LR7Nw=\""
+          "Value": "\"WERNpnZF4Sl2OukmZkDCAa+pD7RnGrFM35kT8tMSEcA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 11 Apr 2025 21:26:44 GMT"
+          "Value": "Fri, 11 Apr 2025 22:32:06 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1992,52 +2037,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-fd08Gd8vNnHuTD4qGMkaGRhVR6XpyySp3vyaZ3LR7Nw="
-        }
-      ]
-    },
-    {
-      "Route": "css/styles.nnv1c47txr.css",
-      "AssetFile": "C:\\Users\\Ivan\\Documents\\Project-C-Sharp\\InventoryManagement\\InventoryManagementWebApp\\wwwroot\\css\\styles.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "3092"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"fd08Gd8vNnHuTD4qGMkaGRhVR6XpyySp3vyaZ3LR7Nw=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 11 Apr 2025 21:26:44 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "nnv1c47txr"
-        },
-        {
-          "Name": "label",
-          "Value": "css/styles.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-fd08Gd8vNnHuTD4qGMkaGRhVR6XpyySp3vyaZ3LR7Nw="
+          "Value": "sha256-WERNpnZF4Sl2OukmZkDCAa+pD7RnGrFM35kT8tMSEcA="
         }
       ]
     },

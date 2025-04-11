@@ -1,4 +1,5 @@
 using InventoryManagementWebApp.Data;
+using InventoryManagementWebApp.Interfaces;
 using InventoryManagementWebApp.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,8 @@ builder.Services.AddDbContext<AppDBContext>(options =>
 
 // Registrar servicios personalizados
 builder.Services.AddSingleton<EncryptPass>();
+builder.Services.AddScoped<IExcelReportService, ExcelReportService>();
+builder.Services.AddScoped<IPdfReportService, PdfReportService>();
 
 // Autenticacion de Login Config
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

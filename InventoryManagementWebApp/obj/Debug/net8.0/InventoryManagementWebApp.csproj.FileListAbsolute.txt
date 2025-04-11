@@ -281,7 +281,6 @@ C:\Users\Ivan\Documents\Project-C-Sharp\InventoryManagement\InventoryManagementW
 C:\Users\Ivan\Documents\Project-C-Sharp\InventoryManagement\InventoryManagementWebApp\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
 C:\Users\Ivan\Documents\Project-C-Sharp\InventoryManagement\InventoryManagementWebApp\bin\Debug\net8.0\EPPlus.dll
 C:\Users\Ivan\Documents\Project-C-Sharp\InventoryManagement\InventoryManagementWebApp\bin\Debug\net8.0\EPPlus.Interfaces.dll
-C:\Users\Ivan\Documents\Project-C-Sharp\InventoryManagement\InventoryManagementWebApp\bin\Debug\net8.0\EPPlus.System.Drawing.dll
 C:\Users\Ivan\Documents\Project-C-Sharp\InventoryManagement\InventoryManagementWebApp\bin\Debug\net8.0\Humanizer.dll
 C:\Users\Ivan\Documents\Project-C-Sharp\InventoryManagement\InventoryManagementWebApp\bin\Debug\net8.0\itextsharp.dll
 C:\Users\Ivan\Documents\Project-C-Sharp\InventoryManagement\InventoryManagementWebApp\bin\Debug\net8.0\Microsoft.AspNetCore.Razor.Language.dll
@@ -540,3 +539,4 @@ C:\Users\Ivan\Documents\Project-C-Sharp\InventoryManagement\InventoryManagementW
 C:\Users\Ivan\Documents\Project-C-Sharp\InventoryManagement\InventoryManagementWebApp\obj\Debug\net8.0\InventoryManagementWebApp.pdb
 C:\Users\Ivan\Documents\Project-C-Sharp\InventoryManagement\InventoryManagementWebApp\obj\Debug\net8.0\InventoryManagementWebApp.genruntimeconfig.cache
 C:\Users\Ivan\Documents\Project-C-Sharp\InventoryManagement\InventoryManagementWebApp\obj\Debug\net8.0\ref\InventoryManagementWebApp.dll
+C:\Users\Ivan\Documents\Project-C-Sharp\InventoryManagement\InventoryManagementWebApp\bin\Debug\net8.0\EPPlus.System.Drawing.dll
