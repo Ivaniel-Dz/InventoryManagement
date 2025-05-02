@@ -1,0 +1,70 @@
+﻿@model SistemaInventario.ViewModels.UsuarioVM;
+
+<title>Crear Nuevo Usuario</title>
+<link rel="stylesheet" href="~/css/form.css" />
+<link rel="stylesheet" href="~/css/button.css" />
+<link rel="stylesheet" href="~/css/alert.css" />
+
+<section class="container">
+    <div class="grid-layout">
+        <main class="form-container">
+            <div class="form-content">
+
+                <h1 class="form-title">Crear Nuevo Usuario</h1>
+
+                <form class="form-grid" asp-controller="Admin" asp-action="Create" method="post">
+                    <!-- Inputs -->
+                    <div class="input-group full">
+                        <label for="FirstName" class="label">Nombre Completo</label>
+                        <input type="text" id="FirstName" class="input" asp-for="Nombre" required />
+                    </div>
+
+                    <div class="input-group full">
+                        <label for="Email" class="label">Correo</label>
+                        <input type="email" id="Email" class="input" asp-for="Correo" required />
+                    </div>
+
+                    <div class="input-group full">
+                        <label for="Password" class="label">Contraseña</label>
+                        <input type="password" id="Password" class="input" asp-for="Password" required />
+                    </div>
+
+                    <!-- Select -->
+                    <div class="input-group full">
+                        <label for="FirstName" class="label"> Roles </label>
+                        <select class="input" asp-for="RolId">
+                            <option value=""> Seleccione una Rol </option>
+                            @foreach (var item in Model.RolesDisponibles)
+                            {
+                                <option value="@item.Id">@item.Rol</option>
+                            }
+                        </select>
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="form-actions">
+                        <a class="btn btn-secondary" asp-controller="Admin" asp-action="Index">Regresar</a>
+                        <button class="btn btn-primary" type="submit">Crear</button>
+                    </div>
+
+                    <!-- Alertas -->
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success text-center" role="alert">
+                            @TempData["Success"]
+                        </div>
+                    }
+
+                    @if (TempData["Warning"] != null)
+                    {
+                        <div class="alert alert-warning text-center" role="alert">
+                            @TempData["Warning"]
+                        </div>
+                    }
+
+                </form>
+
+            </div>
+        </main>
+    </div>
+</section>

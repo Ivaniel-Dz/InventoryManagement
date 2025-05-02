@@ -1,0 +1,49 @@
+﻿@model SistemaInventario.DTOs.CategoriaDTO;
+
+<title>Agregar Categorías</title>
+<link rel="stylesheet" href="~/css/form.css" />
+<link rel="stylesheet" href="~/css/button.css" />
+<link rel="stylesheet" href="~/css/alert.css" />
+
+<section class="container">
+    <div class="grid-layout">
+        <main class="form-container">
+            <div class="form-content">
+                <h1 class="form-title">Agregar Categoría Nueva</h1>
+
+                <form class="form-grid" asp-controller="Categoria" asp-action="Create" method="post">
+
+                    <div class="input-group full">
+                        <label for="FirstName" class="label"> Categoría </label>
+                        <input type="text" id="FirstName" class="input" asp-for="Nombre" required />
+                    </div>
+
+                    <div class="input-group full">
+                        <label for="FirstName" class="label"> Descripción </label>
+                        <textarea id="FirstName" class="input" style="height: 110px" asp-for="Descripcion">
+                        </textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn btn-primary" type="submit">Confirmar</button>
+                    </div>
+
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success text-center" role="alert">
+                            @TempData["Success"]
+                        </div>
+                    }
+
+                    @if (TempData["Warning"] != null)
+                    {
+                        <div class="alert alert-warning text-center" role="alert">
+                            @TempData["Warning"]
+                        </div>
+                    }
+
+                </form>
+            </div>
+        </main>
+    </div>
+</section>
