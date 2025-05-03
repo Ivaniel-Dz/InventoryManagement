@@ -2,6 +2,7 @@
 @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0);
 * {
     box-sizing: border-box;
+    font-family: "Euclid Circular A", "Poppins";
 }
 
 :root {

@@ -2,6 +2,9 @@
 
 .table-container {
     overflow-x: auto;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
 }
 
 .table-title {
@@ -11,21 +14,22 @@
 .header-table {
     display: flex;
     justify-content: space-between;
-    margin: 0 16px;
+    padding-bottom: 12px;
 }
 
 /* Estilos para la barra de búsqueda */
 .search-input {
-    padding: 8px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px 24px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 4px;
-    margin-bottom: 10px;
 }
 
 /* Estilo de la tabla*/
 .table {
     min-width: 100%;
+    border-radius: 5px;
     border-collapse: collapse;
+    border: 1px solid rgba(0, 0, 0, 0.2);
     background-color: white;
     text-align: left;
     font-size: 14px;

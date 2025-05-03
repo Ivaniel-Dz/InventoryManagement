@@ -1,179 +1,169 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-root {
-    --color-body: #EDE8DC;
-    --bg-color: #303443;
-    --border-color: #141720;
-    --text-color-w: white;
-    --text-color-b: #4b5563;
+﻿@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0);
+
+* {
+    font-family: "Euclid Circular A", "Poppins";
 }
 
 body {
-    font-family: "Poppins", sans-serif;
-    background-color: var(--color-body);
-    padding: 0;
     margin: 0;
+    font-family: "Euclid Circular A", "Poppins";
 }
 
-input, button {
-    font-family: "Poppins", sans-serif !important;
-}
-
-/* Estructura principal */
-.layout {
+/* Dashboard */
+.dashboard {
     display: flex;
     height: 100vh;
+    background-color: #f9fafb;
 }
 
-/* Sidebar */
-.sidebar-container {
-    width: 250px; /* Ancho del sidebar */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-right: 1px solid #141720;
-    background-color: #303443;
-}
-
-/*Menu */
-.menu-section {
-    padding: 24px;
-}
-
-/* Titulo & Logo */
-.logo-section {
-    display: flex;
-    flex-direction:column;
-    align-items:center;
-    text-align: center;
-}
-
-.logo-section .logo-icon {
-    text-align: center;
-    color: #f3f4f6;
-    width: 50px;
-}
-
-.logo-title {
-    color: #f3f4f6;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-/* Opcion de Menu */
-.menu {
-    margin-top: 24px;
-    list-style: none;
-    padding-left: 0;
-}
-
-/*Menu*/
-.menu-item {
-    display: flex;
-    align-items: center;
-    padding: 8px 16px;
-    margin-bottom: 12px;
-    gap: 5px;
-    font-size: 14px;
-    font-weight: 500;
-    color: #f3f4f6;
-    border-radius: 8px;
-    text-decoration: none;
-}
-
-    .menu-item:hover {
-        background-color: #f3f4f6;
-        color: #374151;
-    }
-
-    .menu-item.active {
-        background-color: #f3f4f6;
-        color: #374151;
-    }
-
-/* Icon de Menu */
-.menu-item svg {
-    width: 18px;
-}
-
-.user-section {
-    border-top: 1px solid #141720;
-}
-
-.user-profile {
-    display: flex;
-    align-items: center;
-    padding: 16px;
-    text-decoration: none;
-    background-color: #303443;
-}
-
-.profile-picture {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    background-color: white;
-}
-
-.user-info {
-    margin-left: 8px;
-}
-
-.user-name {
+.sidebar {
+    width: 240px;
+    background-color: #1f2937;
     color: white;
-    font-weight: 600;
-    font-size: 12px;
-}
-
-.user-email {
-    font-size: 12px;
-    color: #f3f4f6;
-}
-
-.box-content{
+    display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 100%;
+    padding-bottom: 20px;
 }
 
-.header {
-    background-color: var(--color-body);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-    position: relative;
-    z-index: 10;
-}
-
-.header-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0px 10px;
+/* Logo */
+.brand {
     display: flex;
-    justify-content: end;
+    flex-direction: column;
     align-items: center;
-}
-
-/* Iconos de Header: Salir y Notificación */
-.icon-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    gap: 5px;
+    padding: 20px;
     text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    text-decoration: none;
 }
 
-.icon-header {
+    .brand svg {
+        width: 80px;
+        color: white;
+    }
+
+    .brand span {
+        color: white;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+.nav-section {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Menu */
+.nav-item {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 12px 20px;
+    gap: 3px;
+    font-size: 14px;
+    color: #9ca3af;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+    .nav-item:hover,
+    .nav-item.active {
+        background-color: #374151;
+        color: white;
+    }
+
+/* Contenedor principal */
+.main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cabecera */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 56px;
+    padding: 0 20px;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Busqueda */
+.search-box input {
+    padding: 6px 10px;
+    width: 300px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+}
+
+/* Perfil */
+.profile {
+    position: relative;
+}
+
+.box-icon{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#bellIcon {
     display: flex;
     text-decoration: none;
-    align-items: center;
-    color: #141720;
-    transition: color 0.3s;
-    padding: 2px 5px;
+    color: #374151;
 }
 
-    .icon-header:hover, .icon-header svg:hover {
-        border-radius: 8px;
-        color: white;
-        stroke: white;
-        background-color: #374151;
+.avatar {
+    display: flex;
+    flex-direction: column;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Opción de perfil */
+.dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 185px;
+    z-index: 1000;
+    flex-direction: column;
+}
+
+    .dropdown a {
+        display: flex;
+        gap: 2px;
+        padding: 10px 15px;
+        color: #374151;
+        text-decoration: none;
     }
+
+        .dropdown a:hover {
+            background-color: #f3f4f6;
+        }
+
+    .dropdown.show {
+        display: flex;
+    }
+
+.content {
+    padding: 20px;
+    background: #f3f4f6;
+    flex-grow: 1;
+}
+
+/* Div Content */
+.placeholder-content {
+    height: 384px;
+    border-radius: 6px;
+    background: white;
+}

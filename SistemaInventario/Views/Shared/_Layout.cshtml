@@ -2,149 +2,167 @@
 @using Microsoft.AspNetCore.Identity;
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]</title>
+    <title> @ViewData["Title"] </title>
     <link rel="stylesheet" href="~/css/styles.css" />
 </head>
 <body>
-    <div class="layout">
-        <!-- Sidebar -->
-        <aside class="sidebar-container">
-            <div class="menu-section">
+    <!-- Dashboard -->
+    <section class="dashboard">
+        <!-- Side Nav -->
+        <nav class="sidebar">
+            <a href="/" class="brand">
+                <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                </svg>
+                <span>
+                    Sistema de Inventario
+                </span>
+            </a>
+            <!-- Menus -->
+            @{
+                var controller = ViewContext.RouteData.Values["controller"] as string;
+                var action = ViewContext.RouteData.Values["action"] as string;
+            }
+            <div class="nav-section">
+                @if (User.IsInRole("Empleado"))
+                {
+                    <!-- Icons of tablericons -->
+                    <a class="nav-item @(controller == "Producto" && action == "Index" ? "active" : "")" asp-controller="Producto" asp-action="Index">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5"></path> <path d="M12 12l8 -4.5"></path> <path d="M12 12l0 9"></path> <path d="M12 12l-8 -4.5"></path> </svg>
+                        <span> Productos </span> 
+                    </a>
+                    <!-- Categorias -->
+                    <a class="nav-item @(controller == "Categoria" && action == "Index" ? "active" : "")" asp-controller="Categoria" asp-action="Index">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M18 7v14l-6 -4l-6 4v-14a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4z"></path> </svg>
+                        <span> Categorias </span>
+                    </a>
+                    <!-- Movimiento de Inventario -->
+                    <a class="nav-item @(controller == "Movimiento" && action == "Index" ? "active" : "")" asp-controller="Movimiento" asp-action="Index">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M3 3m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"></path> <path d="M15 15m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"></path> <path d="M21 11v-3a2 2 0 0 0 -2 -2h-6l3 3m0 -6l-3 3"></path> <path d="M3 13v3a2 2 0 0 0 2 2h6l-3 -3m0 6l3 -3"></path> </svg>
+                        <span> Movimiento Inventario </span>
+                    </a>
+                    <!-- Reportes -->
+                    <a class="nav-item @(controller == "Reporte" && action == "Stock" ? "active" : "")" asp-controller="Reporte" asp-action="Stock">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M14 3v4a1 1 0 0 0 1 1h4"></path> <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path> <path d="M9 17l0 -5"></path> <path d="M12 17l0 -1"></path> <path d="M15 17l0 -3"></path> </svg>
+                        <span> Reportes </span>
+                    </a>
+                    <!-- Notificaciones -->
+                    <a class="nav-item  @(controller == "Notification" && action == "Index" ? "active" : "")" asp-controller="Notification" asp-action="Index">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6"></path> <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path> </svg>
+                        <span> Notificaciones </span>
+                    </a>
+                } @if (User.IsInRole("Admin"))
+                {
+                    <!-- Lista de Usuarios -->
+                    <a class="nav-item @(controller == "Admin" && action == "Index" ? "active" : "")" asp-controller="Admin" asp-action="Index">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6"></path> <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path> </svg>
+                        <span> Usuarios </span>
+                    </a>
+                    <!-- Agregar Usuario -->
+                    <a class="nav-item @(controller == "Admin" && action == "Create" ? "active" : "")" asp-controller="Admin" asp-action="Create">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
+                            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+                            <path d="M16 19h6"></path>
+                            <path d="M19 16v6"></path>
+                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4"></path>
+                        </svg>
+                        <span> Agregar Usuario </span>
+                    </a>
+                    <!-- Lista de roles -->
+                    <a class="nav-item @(controller == "Rol" && action == "Index" ? "active" : "")" asp-controller="Rol" asp-action="Index">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path> <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1"></path> <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path> <path d="M17 10h2a2 2 0 0 1 2 2v1"></path> <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path> <path d="M3 13v-1a2 2 0 0 1 2 -2h2"></path> </svg>
+                        <span> Roles </span>
+                    </a>
+                }
+                <!-- Configuracón -->
+                <a class="nav-item @(controller == "Usuario" && action == "Edit" ? "active" : "")" asp-controller="Usuario" asp-action="Edit" asp-route-id="@User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).Select(c => c.Value).SingleOrDefault()">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"></path> <path d="M10 9v6l5 -3z"></path> </svg>
+                    <span> Configuración </span>
+                </a>
+         
+            </div>
+        </nav>
 
-                <div class="logo-section">
-                    <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                    </svg>
-                    <span class="logo-title">Sistema de Inventario</span>
+        <!-- Main -->
+        <div class="main">
+            <!-- Header -->
+            <header class="header">
+                <!-- Barra de Busqueda -->
+                <div class="search-box">
+                    <input type="text" placeholder="Search for articles..." />
                 </div>
 
-                @{
-                    var controller = ViewContext.RouteData.Values["controller"] as string;
-                    var action = ViewContext.RouteData.Values["action"] as string;
-                }
-                <ul class="menu">
-                    @if (User.IsInRole("Empleado"))
-                    {
-                        <li>
-                            <a class="menu-item @(controller == "Producto" && action == "Index" ? "active" : "")" asp-controller="Producto" asp-action="Index">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5"></path> <path d="M12 12l8 -4.5"></path> <path d="M12 12l0 9"></path> <path d="M12 12l-8 -4.5"></path> </svg>
-                                <span> Productos</span> 
-                             </a>
-                        </li>
-                        <li>
-                            <a class="menu-item @(controller == "Categoria" && action == "Index" ? "active" : "")" asp-controller="Categoria" asp-action="Index">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M18 7v14l-6 -4l-6 4v-14a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4z"></path> </svg>
-                                <span> Categorias </span>
-                             </a>
-                        </li>
-                        <li>
-                            <a class="menu-item @(controller == "Movimiento" && action == "Index" ? "active" : "")" asp-controller="Movimiento" asp-action="Index">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M3 3m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"></path> <path d="M15 15m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"></path> <path d="M21 11v-3a2 2 0 0 0 -2 -2h-6l3 3m0 -6l-3 3"></path> <path d="M3 13v3a2 2 0 0 0 2 2h6l-3 -3m0 6l3 -3"></path> </svg>
-                                <span> Movimiento Inventario </span>
-                             </a>
-                        </li>
-                        <li>
-                            <a class="menu-item @(controller == "Reporte" && action == "Stock" ? "active" : "")" asp-controller="Reporte" asp-action="Stock">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M14 3v4a1 1 0 0 0 1 1h4"></path> <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path> <path d="M9 17l0 -5"></path> <path d="M12 17l0 -1"></path> <path d="M15 17l0 -3"></path> </svg>
-                                <span> Reportes </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="menu-item @(controller == "Notification" && action == "Index" ? "active" : "")" asp-controller="Notification" asp-action="Index">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6"></path> <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path> </svg>
-                                <span> Notificaciones </span>
-                            </a>
-                        </li>
-                    }
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <li>
-                            <a class="menu-item @(controller == "Admin" && action == "Index" ? "active" : "")" asp-controller="Admin" asp-action="Index">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6"></path> <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path> </svg>
-                                <span> Usuarios </span> 
-                            </a>
-                        </li>
-                        <li>
-                            <a class="menu-item @(controller == "Admin" && action == "Create" ? "active" : "")" asp-controller="Admin" asp-action="Create">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
-                                    <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
-                                    <path d="M16 19h6"></path>
-                                    <path d="M19 16v6"></path>
-                                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4"></path>
-                                </svg>
-                                <span> Nuevo Usuario </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="menu-item @(controller == "Rol" && action == "Index" ? "active" : "")" asp-controller="Rol" asp-action="Index">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path> <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1"></path> <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path> <path d="M17 10h2a2 2 0 0 1 2 2v1"></path> <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path> <path d="M3 13v-1a2 2 0 0 1 2 -2h2"></path> </svg>
-                                <span> Roles </span> 
-                            </a>
-                        </li>
-                    }
-                </ul>
-
-
-            </div>
-
-            <div class="user-section">
-                <a class="user-profile" asp-controller="Usuario" asp-action="Edit" asp-route-id="@User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).Select(c => c.Value).SingleOrDefault()">
-                    <img src="https://robohash.org/user-profile"
-                         alt="User"
-                         class="profile-picture" />
-                    <div>
-                        @if (User.Identity!.IsAuthenticated) 
-                        {
-                            <p class="user-info">
-                                <strong class="user-name">@User.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c=>c.Value).SingleOrDefault()</strong>
-                                <span class="user-email">@User.Claims.Where(c => c.Type == ClaimTypes.Email).Select(c => c.Value).SingleOrDefault()</span>
-                            </p>
-                        }
-                    </div>
-                </a>
-            </div>
-
-        </aside>
-
-        <div class="box-content">
-            <header class="header">
-                <div class="header-container">
-                    <div class="icon-container">
-                    @if (User.IsInRole("Empleado")) {
-                        <a class="icon-header alert-icon" asp-controller="Notification" asp-action="AlertStock">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bell" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
-                                <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
-                            </svg>
+                <!-- Perfil -->
+                <div class="profile">
+                    <div class="box-icon">
+                        @if (User.IsInRole("Empleado")){
+                        <!-- Notificación -->
+                        <a asp-controller="Notification" asp-action="AlertStock" id="bellIcon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6"></path> <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path> </svg>
                         </a>
-                     }
-                        <a class="icon-header logout-icon" asp-controller="Acceso" asp-action="Exit">
-                            <span> Salir </span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
-                                <path d="M9 12h12l-3 -3" />
-                                <path d="M18 15l3 -3" />
-                            </svg>
+                        }
+                        <!-- Imagen logo -->
+                        <a href="#" id="profileIcon">
+                            @* <img src="https://robohash.org/user-profile" alt="Perfil" class="avatar" /> *@
+                            <img alt="Perfil" class="avatar" src="https://ui-avatars.com/api/?name=@User.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault()&background=random" />
+                        </a>
+                    </div>
+                    <!-- Menu Dropdown -->
+                    <div class="dropdown" id="profileDropdown">
+                        <!-- Perfil -->
+                        <!-- Icons of tablericons -->
+                        <a href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" stroke-width="2"> <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path> <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path> <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855"></path> </svg>
+                            <span> 
+                                <strong class="user-name">@User.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault()</strong> 
+                                <span class="user-email">@User.Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).SingleOrDefault()</span>
+                             </span>
+                         </a>
+                        <!-- Configuración -->
+                        <a asp-controller="Usuario" asp-action="Edit" asp-route-id="@User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).Select(c => c.Value).SingleOrDefault()">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" stroke-width="2"> <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"></path> <path d="M10 9v6l5 -3z"></path> </svg>
+                            <span> Configuración </span>
+                        </a>
+                        <!-- Cerrar sesion -->
+                        <a asp-controller="Acceso" asp-action="Exit">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" stroke-width="2"> <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"></path> <path d="M9 12h12l-3 -3"></path> <path d="M18 15l3 -3"></path> </svg>
+                            <span> Cerrar sesión </span>
                         </a>
                     </div>
                 </div>
             </header>
 
-            <!-- Main Content -->
-            <section class="main-conten">
-                <main role="main">
+            <!-- Contenido Principal -->
+            <div class="content">
+                <!-- Contenido aquí -->
+                <div class="placeholder-content">
                     @RenderBody()
-                </main>
-            </section>
+                </div>
+            </div>
+
         </div>
-    </div>
+    </section>
+
+    <script>
+        // Dropdown de perfil
+        const icon = document.getElementById('profileIcon');
+        const dropdown = document.getElementById('profileDropdown');
+        icon.addEventListener('click', (e) => {
+          e.preventDefault();
+          dropdown.classList.toggle('show');
+        });
+        document.addEventListener('click', (e) => {
+          if (!icon.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.remove('show');
+          }
+        });
+    </script>
 
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+
