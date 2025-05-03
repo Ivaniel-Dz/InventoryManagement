@@ -161,9 +161,3 @@ body {
     flex-grow: 1;
 }
 
-/* Div Content */
-.placeholder-content {
-    height: 384px;
-    border-radius: 6px;
-    background: white;
-}
