@@ -104,21 +104,21 @@ Ambas opciones son **gratuitas, compatibles con .NET 8 y sin restricciones de li
 Este **Sistema de Gestión de Inventarios** proporciona a las pequeñas empresas una herramienta robusta y eficiente para gestionar su inventario, asegurando un control completo sobre los productos disponibles, el registro de entradas y salidas, así como la generación de reportes claros y alertas automáticas. Con un enfoque en la facilidad de uso y la seguridad, este sistema busca simplificar las operaciones diarias relacionadas con el inventario.
 
 # Preview
-![preview](/Preview/preview.gif)
+![preview](/preview/preview.gif)
 
 ## Auth
 ### Login de usuario
-![preview](/Preview/login.jpeg)
+![preview](/preview/login.jpeg)
 ### Registro de usuario
-![preview](/Preview/registro.jpeg)
+![preview](/preview/registro.jpeg)
 
 ## Dashboard Admin
 ### Usuarios Lista
-![preview](/Preview/usuario-list.jpeg)
+![preview](/preview/usuario-list.jpeg)
 ### Usuario Nuevo
-![preview](/Preview/user-new.jpeg)
+![preview](/preview/user-new.jpeg)
 ### Roles List
-![preview](/Preview/rol-list.jpeg)
+![preview](/preview/rol-list.jpeg)
 
 ## Dashboard Empleado
 ### Productos Lista
