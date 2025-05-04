@@ -2,7 +2,7 @@
 
 ## Descripción General del Proyecto
 
-El **Sistema de Gestión de Inventarios** es una aplicación web creada con **C# y .NET** para ayudar a pequeñas empresas a gestionar eficientemente sus inventarios. Las principales funcionalidades incluyen:
+El **Sistema de Gestión de Inventarios** es una aplicación web creada con **C# y ASP.NET CORE MVC** para ayudar a pequeñas empresas a gestionar eficientemente sus inventarios. Las principales funcionalidades incluyen:
 
 - **Registro de productos** con detalles como nombre, categoría, precio y cantidad en stock.
 - **Gestión de movimientos** de inventario (entradas y salidas).
@@ -77,38 +77,76 @@ El sistema utiliza **autenticación basada en cookies** para gestionar la sesió
    - **`IsNullOrWhiteSpace`**: Además de comprobar si es nula o vacía, también considera las cadenas que contienen solo espacios en blanco como vacías.
 
 ## Puntos a Mejorar
-1. **Mensajes de Confirmación**: Agregar un modelo para manejar mensajes de confirmación cuando se realicen operaciones como eliminación o actualización de datos.
-2. **Reporte de Movimiento**: Implementar en el controlador de Reportes, la generación de reporte para Movimiento de Inventario similar a la de Productos.
-3. **Pasar el Front a Angular**: Pasar el diseño hecho con Razor a Angular.
-4. **Pie de Pagina**: Agregamos la lógica de pie de pagina con su enumeración para las tablas.
+1. **Mensajes de Confirmación:** Agregar un modelo para manejar mensajes de confirmación cuando se realicen operaciones como eliminación o actualización de datos.
+2. **Reporte de Movimiento:** Implementar en el controlador de Reportes, la generación de reporte para Movimiento de Inventario similar a la de Productos.
+3. **Paginación:** Agregamos la lógica de paginación con su enumeración para las tablas desde el backend y en frontend el diseño.
+4. **Pasar el proyecto de MVC a API REST:** Pasar el proyecto hecho en ASP.NET Core MVC a ASP.NET Core WEb API y usar Angular como la parte frontend.
+5. **Restructurar el proyecto:** Separar el código del Controlador en tres partes, Interfaces, Services y controlador.
+6. **Actualizar los paquetes de Excel y PDF:** Actualizar EPPlus y iTextSharp por otros paquetes que sean compatibles que la version de .NET8 o 9, gratuitas.
+
+### 📌 **Tabla comparativa**
+| Librería       | Tipo    | Licencia | .NET 8 | Ventajas                           |
+|----------------|---------|----------|--------|------------------------------------|
+| **QuestPDF**   | PDF     | MIT      | ✅     | Diseño fluido, moderno.            |
+| **PuppeteerSharp** | PDF  | MIT      | ✅     | PDF desde HTML (flexible).         |
+| **ClosedXML**  | Excel   | MIT      | ✅     | Más fácil que EPPlus.              |
+| **NPOI**       | Excel   | Apache 2 | ✅     | Soporta .xls y .xlsx.              |
+
+---
+
+- **Para PDF:** se puede usar **QuestPDF** (si necesitas diseño programático) o **PuppeteerSharp** (si prefieres HTML → PDF).  
+- **Para Excel:** se puede usar **ClosedXML** (similar a EPPlus pero con licencia MIT).  
+
+Ambas opciones son **gratuitas, compatibles con .NET 8 y sin restricciones de licencia** para proyectos comerciales.  
 
 ## Conclusión
 
 Este **Sistema de Gestión de Inventarios** proporciona a las pequeñas empresas una herramienta robusta y eficiente para gestionar su inventario, asegurando un control completo sobre los productos disponibles, el registro de entradas y salidas, así como la generación de reportes claros y alertas automáticas. Con un enfoque en la facilidad de uso y la seguridad, este sistema busca simplificar las operaciones diarias relacionadas con el inventario.
 
-# Preview del Proyecto
+# Preview
 ![preview](/Preview/preview.gif)
 
-## Login
+## Auth
+### Login de usuario
 ![preview](/Preview/login.jpeg)
 ### Registro de usuario
-![preview](/Preview/register-user.jpeg)
+![preview](/Preview/registro.jpeg)
 
 ## Dashboard Admin
-![preview](/Preview/user-list.jpeg)
+### Usuarios Lista
+![preview](/Preview/usuario-list.jpeg)
+### Usuario Nuevo
+![preview](/Preview/user-new.jpeg)
+### Roles List
+![preview](/Preview/rol-list.jpeg)
 
 ## Dashboard Empleado
-### Lista de Productos
-![preview](/Preview/producto.jpeg)
+### Productos Lista
+![preview](/preview/producto-list.jpeg)
 
-### Editar Producto
-![preview](/Preview/edit-prod.jpeg)
+### Producto Editar
+![preview](/preview/producto-edit.jpeg)
 
-### Registrar Producto
-![preview](/Preview/registrar-prod.jpeg)
+### Producto Nuevo
+![preview](/preview/producto-nuevo.jpeg)
 
-### Registrar Movimiento de Inventario
-![preview](/Preview/registro-mov.jpeg)
+### Categorías Lista
+![preview](/preview/categoria-list.jpeg)
+
+### Categorías Nuevo
+![preview](/preview/categoria-nuevo.jpeg)
+
+### Movimiento de Inventario
+![preview](/preview/movimiento-list.jpeg)
+
+### Movimiento de Nuevo
+![preview](/preview/movimiento-nuevo.jpeg)
+
+### Notificación
+![preview](/preview/notificacion.jpeg)
 
 ### Reporte
-![preview](/Preview/reporte.jpeg)
+![preview](/preview/reportes.jpeg)
+
+### Perfil
+![preview](/preview/perfil.jpeg)
