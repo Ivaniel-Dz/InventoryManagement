@@ -91,10 +91,6 @@
         <div class="main">
             <!-- Header -->
             <header class="header">
-                <!-- Barra de Busqueda -->
-                <div class="search-box">
-                    <input type="text" placeholder="Search for articles..." />
-                </div>
 
                 <!-- Perfil -->
                 <div class="profile">
@@ -108,7 +104,7 @@
                         <!-- Imagen logo -->
                         <a href="#" id="profileIcon">
                             @* <img src="https://robohash.org/user-profile" alt="Perfil" class="avatar" /> *@
-                            <img alt="Perfil" class="avatar" src="https://ui-avatars.com/api/?name=@User.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault()&background=random" />
+                            <img alt="Perfil" class="avatar" src="https://ui-avatars.com/api/?name=@User.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault()" />
                         </a>
                     </div>
                     <!-- Menu Dropdown -->

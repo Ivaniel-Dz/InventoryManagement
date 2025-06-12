@@ -82,7 +82,7 @@ body {
 /* Cabecera */
 .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     align-items: center;
     height: 56px;
     padding: 0 20px;
@@ -103,7 +103,7 @@ body {
     position: relative;
 }
 
-.box-icon{
+.box-icon {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -160,4 +160,3 @@ body {
     background: #f3f4f6;
     flex-grow: 1;
 }
-
