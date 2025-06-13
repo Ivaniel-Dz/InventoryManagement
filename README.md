@@ -107,46 +107,46 @@ Este **Sistema de Gestión de Inventarios** proporciona a las pequeñas empresas
 ![preview](/preview/preview.gif)
 
 ## Auth
-### Login de usuario
-![preview](/preview/login.jpeg)
-### Registro de usuario
-![preview](/preview/registro.jpeg)
+### Login
+![preview](/preview/auth-login.jpeg)
+### Registro
+![preview](/preview/auth-register.jpeg)
 
 ## Dashboard Admin
 ### Usuarios Lista
-![preview](/preview/usuario-list.jpeg)
-### Usuario Nuevo
-![preview](/preview/user-new.jpeg)
-### Roles List
-![preview](/preview/rol-list.jpeg)
+![preview](/preview/user-list.jpeg)
+### Usuario Formulario
+![preview](/preview/user-form.jpeg)
+
+## Role Lista
+![preview](/preview/role-form.jpeg)
+## Role Formulario
+![preview](/preview/role-form.jpeg)
 
 ## Dashboard Empleado
 ### Productos Lista
-![preview](/preview/producto-list.jpeg)
+![preview](/preview/product-list.jpeg)
 
-### Producto Editar
-![preview](/preview/producto-edit.jpeg)
-
-### Producto Nuevo
-![preview](/preview/producto-nuevo.jpeg)
+### Producto Formulario
+![preview](/preview/product-form.jpeg)
 
 ### Categorías Lista
-![preview](/preview/categoria-list.jpeg)
+![preview](/preview/category-list.jpeg)
 
-### Categorías Nuevo
-![preview](/preview/categoria-nuevo.jpeg)
+### Categorías Formulario
+![preview](/preview/category-form.jpeg)
 
 ### Movimiento de Inventario
-![preview](/preview/movimiento-list.jpeg)
+![preview](/preview/inventory-list.jpeg)
 
 ### Movimiento de Nuevo
-![preview](/preview/movimiento-nuevo.jpeg)
+![preview](/preview/inventory-form.jpeg)
 
 ### Notificación
-![preview](/preview/notificacion.jpeg)
+![preview](/preview/notification.jpeg)
 
 ### Reporte
-![preview](/preview/reportes.jpeg)
+![preview](/preview/report.jpeg)
 
 ### Perfil
-![preview](/preview/perfil.jpeg)
+![preview](/preview/profile.jpeg)
